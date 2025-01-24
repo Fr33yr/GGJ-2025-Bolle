@@ -19,6 +19,4 @@ texture = ExtResource("2_thuo4")
 [node name="Muzzle" type="Marker2D" parent="."]
 modulate = Color(0.707331, 0.198488, 0.065321, 1)
 self_modulate = Color(0.804666, 0.366038, 0.399147, 1)
-position = Vector2(33, 0)
-rotation = 0.287649
 script = ExtResource("3_0xgp6")

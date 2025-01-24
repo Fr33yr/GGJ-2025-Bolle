@@ -1,14 +1,18 @@
 extends Area2D
 
-@export var speed = 600
-var muzzle: Marker2D 
+@onready var player = $"../../Player"
+
+@export var speed = 1250
+var velocity: Vector2
+var direction: Vector2
 
 func _ready():
-	pass
+	direction = player.aim_direction
 
 func _physics_process(delta):
-	var velocity = Vector2(-speed, 0) * delta
-	global_position += velocity
+	print(direction)
+	velocity = direction * speed
+	position += velocity * delta
 	
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

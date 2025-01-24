@@ -9,6 +9,7 @@ signal bubble_shot
 @export var move_speed : float = 500
 @export var friction : float = 1000
 var character_direction : Vector2
+var aim_direction = Vector2(-1,0)
 
 var bubble_scene = preload("res://scenes/bubble.tscn")
 
@@ -19,14 +20,18 @@ func _process(delta):
 func _physics_process(delta):
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")
+	character_direction = character_direction.normalized()
 	
-	if character_direction.x > 0: sprite_2d.flip_h = false
-	elif character_direction.x < 0: sprite_2d.flip_h = true
-	
+	if character_direction.x > 0: 
+		sprite_2d.flip_h = false
+	elif character_direction.x < 0: 
+		sprite_2d.flip_h = true
+		
 	if character_direction != Vector2.ZERO:
 		velocity = character_direction.normalized() * move_speed
+		aim_direction = character_direction	
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+		velocity = velocity.move_toward(Vector2.ZERO, friction * delta) * Vector2.ZERO
 	
 	move_and_slide()
 	
