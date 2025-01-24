@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkomlwalru0he"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_7qk1q"]
+[ext_resource type="Texture2D" uid="uid://c65spfheiqrf3" path="res://assets/player.png" id="2_thuo4"]
+[ext_resource type="Script" path="res://scripts/muzzle.gd" id="3_0xgp6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wkuj7"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_7qk1q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wkuj7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_thuo4")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+modulate = Color(0.707331, 0.198488, 0.065321, 1)
+self_modulate = Color(0.804666, 0.366038, 0.399147, 1)
+position = Vector2(33, 0)
+rotation = 0.287649
+script = ExtResource("3_0xgp6")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://2fafl4vg3o0k"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_ea06o"]
+[ext_resource type="PackedScene" uid="uid://bkomlwalru0he" path="res://scenes/player.tscn" id="1_ttw0g"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ea06o")
+
+[node name="Player" parent="." instance=ExtResource("1_ttw0g")]
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(663, 343)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BubbleContainer" type="Node" parent="."]
