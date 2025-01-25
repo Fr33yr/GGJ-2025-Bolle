@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxeijjuq25l1a"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_7qtmb"]
+[ext_resource type="Texture2D" uid="uid://c7cttbagpogms" path="res://assets/ui/Skip_BotonJugar.png" id="2_8kgnw"]
+[ext_resource type="Texture2D" uid="uid://bt6lpmq10moi1" path="res://assets/ui/Skip_Portada.png" id="2_f0bt8"]
+[ext_resource type="Texture2D" uid="uid://dowvxafenklxe" path="res://assets/ui/Skip_BotonCreditos.png" id="3_40dys"]
+[ext_resource type="Texture2D" uid="uid://diprni7tw8tl7" path="res://assets/ui/Skip_BotonSalir.png" id="4_uqn72"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_7qtmb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2094.0
+offset_top = -1199.0
+offset_right = 2094.0
+offset_bottom = 1199.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_f0bt8")
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.5
+offset_top = -360.5
+offset_right = 345.5
+offset_bottom = 360.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 128
+
+[node name="Play" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("2_8kgnw")
+
+[node name="Credits" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("3_40dys")
+
+[node name="Exit" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("4_uqn72")
+
+[connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]
