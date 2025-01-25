@@ -10,7 +10,6 @@ func _ready():
 	direction = player.aim_direction
 
 func _physics_process(delta):
-	print(direction)
 	velocity = direction * speed
 	position += velocity * delta
 	
