@@ -1,90 +1,24 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkomlwalru0he"]
+[gd_scene load_steps=7 format=3 uid="uid://bkomlwalru0he"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7qk1q"]
+[ext_resource type="Texture2D" uid="uid://dh8o4mtwvq7i1" path="res://assets/player/Mago Ataque Frente.png" id="2_qm3bw"]
 [ext_resource type="Script" path="res://scripts/muzzle.gd" id="3_0xgp6"]
-[ext_resource type="AudioStream" uid="uid://d1qr1de4uctvc" path="res://sound/SFX/Fx_BubbleShot.wav" id="3_7ox13"]
-[ext_resource type="Texture2D" uid="uid://dv22hgkcpu350" path="res://assets/player/Mago Ataque Izquierda.png" id="4_hvfmd"]
-[ext_resource type="Texture2D" uid="uid://c0ogcxys26h2" path="res://assets/player/Mago Ataque Derecha.png" id="5_5lkdt"]
-[ext_resource type="Texture2D" uid="uid://ycndahmqeyur" path="res://assets/player/Mago Frente.png" id="5_apsif"]
-[ext_resource type="Texture2D" uid="uid://dod4yvrn0wry0" path="res://assets/player/Mago Izquierda.png" id="5_l7nea"]
-[ext_resource type="Texture2D" uid="uid://btyphcjfxqbcl" path="res://assets/player/Mago Ataque Detras.png" id="6_5yggg"]
-[ext_resource type="Texture2D" uid="uid://n5kjfkwtvqp2" path="res://assets/player/Mago Detras.png" id="6_xfwyb"]
-[ext_resource type="Texture2D" uid="uid://c7i3bijitkv5r" path="res://assets/player/Mago Derecha.png" id="7_kbna6"]
+[ext_resource type="AudioStream" uid="uid://d1qr1de4uctvc" path="res://sound/SFX/Fx_BubbleShot.wav" id="4_iiddu"]
+[ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/hp_system.tscn" id="5_ygdg2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1exfe"]
 radius = 30.0
 height = 230.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2l8vg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_l7nea")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_hvfmd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_l7nea")
-}],
-"loop": true,
-"name": &"atk_left",
-"speed": 15.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_5lkdt")
-}],
-"loop": true,
-"name": &"atk_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_5yggg")
-}],
-"loop": true,
-"name": &"atk_top",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_apsif")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_kbna6")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_apsif")
-}],
-"loop": true,
-"name": &"walk_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_xfwyb")
-}],
-"loop": true,
-"name": &"walk_up",
-"speed": 5.0
-}]
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_7qk1q")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_qm3bw")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 40)
+position = Vector2(0, 78)
 shape = SubResource("CapsuleShape2D_1exfe")
 
 [node name="Muzzle" type="Marker2D" parent="."]
@@ -93,9 +27,16 @@ self_modulate = Color(0.804666, 0.366038, 0.399147, 1)
 script = ExtResource("3_0xgp6")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_7ox13")
+stream = ExtResource("4_iiddu")
 bus = &"SFX"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_2l8vg")
-animation = &"walk_down"
+[node name="HP_System" parent="." instance=ExtResource("5_ygdg2")]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 78)
+shape = SubResource("CapsuleShape2D_1exfe")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

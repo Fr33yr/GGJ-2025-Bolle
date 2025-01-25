@@ -4,10 +4,11 @@ class_name Enemy
 
 @onready var hp_system = $HP_System
 @onready var sprite_2d = $Sprite2D
+@onready var collision_shape_2d = $CollisionShape2D
 @onready var hp_bar = $HP_Bar
 @onready var hitbox = $Area2D/Hitbox
 
-@export var speed = 300.0
+@export var speed = 750.0
 @export var patrol_path: Array[Marker2D] = []
 @export var patrol_wait_time = 1.0
 @export var damage = 1
@@ -28,15 +29,23 @@ func _ready() -> void:
 	hp_system.died.connect(on_Died)
 
 # Calls to HPSystem to apply damage.
-func apply_damage(damage: int):
-	hp_system.apply_damage(damage)
+func apply_damage(damage_recieved: int):
+	hp_system.apply_damage(damage_recieved)
 	
 
 # Disables all functions. Called from signal.
 func on_Died():
-	set_physics_process(false)
-	sprite_2d.visible = false
-	hitbox.disabled = true
+	#TODO: Dying animation. ALSO SFX
+	queue_free()
+	
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	print("Enemy contacts with: ", area.get_parent().name)
+	if area.get_parent() is Bubble:
+		var damage_recieved = (area.get_parent() as Bubble).damage
+		hp_system.apply_damage(damage_recieved)
+
+func take_damage(damage_recieved: int) -> void:
+	hp_bar.value -= damage_recieved
 
 func _physics_process(delta: float) -> void:
 	if patrol_path.size() > 1:
