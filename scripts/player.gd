@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal bubble_shot
 
-@onready var sprite_2d = $Sprite2D
+@onready var character_animated_sprite = $AnimatedSprite2D
 @onready var bubble = $"../Bubble"
 @onready var muzzle = $Muzzle
 @onready var audio_player = $AudioStreamPlayer2D
@@ -22,12 +22,26 @@ func _physics_process(delta):
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")
 	character_direction = character_direction.normalized()
+	print(character_direction)
+	
+	if character_direction.x > 0:
+		character_animated_sprite.play("walk")
+		character_animated_sprite.flip_h = false
+	elif character_direction.x < 0:
+		character_animated_sprite.play("walk")
+		character_animated_sprite.flip_h = true
+		
+	if character_direction.y < 0:
+		character_animated_sprite.play("walk_up")
+	if character_direction.y > 0:
+		character_animated_sprite.play("walk_down")
 		
 	if character_direction != Vector2.ZERO:
 		velocity = character_direction.normalized() * move_speed
 		aim_direction = character_direction	
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta) * Vector2.ZERO
+		character_animated_sprite.play("idle")
 	
 	move_and_slide()
 	
