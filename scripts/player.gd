@@ -46,5 +46,9 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func shoot():
+	#if character_direction.x > 0:
+		#character_animated_sprite.play("atk_right")
+	#elif character_direction.x < 0:
+		#character_animated_sprite.play("atk_left")
 	bubble_shot.emit(bubble_scene, muzzle.global_position)
 	audio_player.play()
