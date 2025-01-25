@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2wd8viwu350v"]
+
+[ext_resource type="Script" path="res://scripts/enemy1.gd" id="1_degdq"]
+[ext_resource type="Texture2D" uid="uid://c71mp2w3itwti" path="res://assets/enemies/Enemigo 2 A.png" id="2_ug6gb"]
+[ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/hp_system.tscn" id="3_xtnne"]
+[ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/hp_bar.tscn" id="4_wktj2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_er8se"]
+radius = 92.9139
+
+[node name="Enemy2" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_degdq")
+hp_max = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ug6gb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_er8se")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_er8se")
+
+[node name="HP_System" parent="." instance=ExtResource("3_xtnne")]
+
+[node name="HP_Bar" parent="." instance=ExtResource("4_wktj2")]
+offset_left = -75.0
+offset_top = -150.0
+offset_right = 75.0
+offset_bottom = -125.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -12,7 +12,7 @@ class_name Enemy
 @export var patrol_path: Array[Marker2D] = []
 @export var patrol_wait_time = 1.0
 @export var damage = 1
-@export var hp_max: int = 3
+@export var hp_max: int = 1
 
 var current_patrol_target = 0
 var wait_timer = 0.0
@@ -22,9 +22,6 @@ func _ready() -> void:
 	hp_system.init(hp_max)
 	hp_bar.max_value = hp_max
 	hp_bar.value = hp_max
-	
-	if patrol_path.size() > 0:
-		position = patrol_path [0].position
 	
 	hp_system.died.connect(on_Died)
 

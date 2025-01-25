@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b08lx1offh8ek"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_e1786"]
+[ext_resource type="Script" path="res://scripts/enemy1.gd" id="1_e1786"]
 [ext_resource type="Texture2D" uid="uid://c0hmgb1rb7fuw" path="res://assets/enemies/Enemigo 1 A.png" id="2_14ffa"]
 [ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/hp_system.tscn" id="3_libdg"]
 [ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/hp_bar.tscn" id="4_wxpug"]
@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_er8se"]
 radius = 92.9139
 
-[node name="Enemy 1A" type="CharacterBody2D"]
+[node name="Enemy 1" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_e1786")
