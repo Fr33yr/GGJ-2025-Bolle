@@ -5,7 +5,6 @@ class_name Enemy
 @onready var hp_system = $HP_System
 @onready var sprite_2d = $Sprite2D
 @onready var hp_bar = $HP_Bar
-@onready var collision_shape_2d = $CollisionShape2D
 @onready var hitbox = $Area2D/Hitbox
 
 @export var speed = 300.0
@@ -37,7 +36,6 @@ func apply_damage(damage: int):
 func on_Died():
 	set_physics_process(false)
 	sprite_2d.visible = false
-	collision_shape_2d.disabled = true
 	hitbox.disabled = true
 
 func _physics_process(delta: float) -> void:

@@ -1,24 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://b08lx1offh8ek"]
+[gd_scene load_steps=6 format=3 uid="uid://b08lx1offh8ek"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_e1786"]
 [ext_resource type="Texture2D" uid="uid://ch6lhqjpbo6jk" path="res://assets/enemy.png" id="1_pq0wo"]
 [ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/hp_system.tscn" id="3_libdg"]
 [ext_resource type="PackedScene" uid="uid://dnqf1x2qkij0j" path="res://scenes/hp_bar.tscn" id="4_wxpug"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7bf1x"]
-radius = 26.0192
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_er8se"]
 radius = 26.0192
 
 [node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_e1786")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_pq0wo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_7bf1x")
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://2fafl4vg3o0k"]
+[gd_scene load_steps=5 format=3 uid="uid://2fafl4vg3o0k"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ea06o"]
 [ext_resource type="PackedScene" uid="uid://bkomlwalru0he" path="res://scenes/player.tscn" id="1_ttw0g"]
+[ext_resource type="Texture2D" uid="uid://deamjlfgywgn4" path="res://assets/background/escenario 1.png" id="2_y86k5"]
 [ext_resource type="PackedScene" uid="uid://b08lx1offh8ek" path="res://scenes/enemy.tscn" id="3_15ct0"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ea06o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y86k5")
 
 [node name="Player" parent="." instance=ExtResource("1_ttw0g")]
 
@@ -15,8 +19,8 @@ script = ExtResource("1_ea06o")
 position = Vector2(187, 3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-532, -301)
-anchor_mode = 0
+position = Vector2(0, -1)
+zoom = Vector2(0.48, 0.48)
 
 [node name="BubbleContainer" type="Node" parent="."]
 
