@@ -5,6 +5,7 @@ signal bubble_shot
 @onready var sprite_2d = $Sprite2D
 @onready var bubble = $"../Bubble"
 @onready var muzzle = $Muzzle
+@onready var audio_player = $AudioStreamPlayer2D
 
 @export var move_speed : float = 500
 @export var friction : float = 1000
@@ -32,3 +33,4 @@ func _physics_process(delta):
 	
 func shoot():
 	bubble_shot.emit(bubble_scene, muzzle.global_position)
+	audio_player.play()
