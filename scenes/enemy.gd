@@ -59,6 +59,4 @@ func move_along_path(delta: float):
 			wait_timer = 0.0
 			current_patrol_target = (current_patrol_target + 1) % patrol_path.size()
 		
-
-
 	
