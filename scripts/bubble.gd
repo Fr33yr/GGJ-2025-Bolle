@@ -23,6 +23,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_area_2d_area_entered(area):
-	print("Bubble contacts with: ", area.get_parent().name)
 	if area.get_parent() is Enemy:
 		queue_free()

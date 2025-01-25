@@ -3,13 +3,19 @@ extends Node2D
 @onready var player_spawn = $PlayerSpawn
 @onready var bubble_container = $BubbleContainer
 @onready var player = $Player
+
 @export var enemy_spawners: Array[Marker2D] = []
 @export var enemy_markers: Array[Marker2D] = []
+
 @onready var enemies_container = $EnemiesContainer
 @onready var enemy_spawn_sfx = $EnemySpawnSFX
+@onready var enemy_spawn_timer = $EnemySpawnTimer
+@onready var enemy_spawn_accelerator = $EnemySpawnAccelerator
 
 const enemy1_scene = preload("res://scenes/enemy1.tscn")
 const enemy2_scene = preload("res://scenes/enemy2.tscn")
+
+var elapsedTime = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,3 +47,7 @@ func _on_timer_timeout():
 	
 	enemies_container.add_child(enemy)
 	enemy_spawn_sfx.play()
+
+
+func _on_enemy_spawn_accelerator_timeout():
+	enemy_spawn_timer.wait_time -= 0.1

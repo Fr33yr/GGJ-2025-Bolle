@@ -31,6 +31,10 @@ enemy_markers = [NodePath("EnemyMarkers/Marker2D"), NodePath("EnemyMarkers/Marke
 wait_time = 2.0
 autostart = true
 
+[node name="EnemySpawnAccelerator" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [node name="EnemySpawnSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_kfp8g")
 bus = &"SFX"
@@ -135,3 +139,4 @@ position = Vector2(-1785, -647)
 position = Vector2(0, -1)
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="EnemySpawnAccelerator" to="." method="_on_enemy_spawn_accelerator_timeout"]

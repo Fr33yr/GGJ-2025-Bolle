@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2wd8viwu350v"]
 
-[ext_resource type="Script" path="res://scripts/enemy1.gd" id="1_degdq"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_degdq"]
 [ext_resource type="Texture2D" uid="uid://c71mp2w3itwti" path="res://assets/enemies/Enemigo 2 A.png" id="2_ug6gb"]
 [ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/hp_system.tscn" id="3_xtnne"]
 [ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/hp_bar.tscn" id="4_wktj2"]

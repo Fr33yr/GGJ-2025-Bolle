@@ -17,7 +17,7 @@ signal bubble_shot
 var character_direction : Vector2
 var aim_direction = Vector2(-1,0)
 
-var bubble_scene = preload("res://scenes/bubble.tscn")
+var bubble_scene = preload("res://scenes/bubble_blue.tscn")
 
 # Initializes the HPSystem.
 func _ready() -> void:
