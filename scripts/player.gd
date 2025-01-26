@@ -15,16 +15,18 @@ signal bubble_shot
 @export var move_speed : float = 750
 @export var friction : float = 1000
 var character_direction : Vector2
-var aim_direction = Vector2(-1,0)
-
+var aim_direction : Vector2
 var bubble_scene = preload("res://scenes/bubble_blue.tscn")
+
+var joystick_connected = false
 
 # Initializes the HPSystem.
 func _ready() -> void:
+	check_connected_joypad()
 	hp_system.init(hp_max)
 	#TODO: HP Bar.
-	
 	hp_system.died.connect(on_Died)
+	
 
 # Calls to HPSystem to apply damage.
 func apply_damage(damage: int):
@@ -53,7 +55,7 @@ func _take_damage(damage: int) -> void:
 func _process(delta) -> void:
 	if Input.is_action_just_pressed("fire"):
 		shoot()
-
+	
 func _physics_process(delta):
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")
@@ -61,12 +63,30 @@ func _physics_process(delta):
 		
 	if character_direction != Vector2.ZERO:
 		velocity = character_direction.normalized() * move_speed
-		aim_direction = character_direction	
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta) * Vector2.ZERO
-	
+	update_muzzle_direction()
 	move_and_slide()
-	
+
+func update_muzzle_direction():
+	if joystick_connected: #Use Joypad Input
+		var aim_input = Vector2(Input.get_axis("aim_left", "aim_right"),
+	 	Input.get_axis("aim_up", "aim_down"))
+		aim_direction = aim_input
+		if aim_input.length() > 0.1: #Dead zone check
+			$Muzzle.rotation = aim_input.angle()
+			aim_direction = aim_input
+	else:
+		var global_mouse_position = get_global_mouse_position()
+		var local_mouse_position = muzzle.to_local(global_mouse_position)
+		$Muzzle.rotation = local_mouse_position.angle()
+		aim_direction = local_mouse_position.normalized()
+		
 func shoot():
+	if aim_direction == Vector2.ZERO: return
 	bubble_shot.emit(bubble_scene, muzzle.global_position)
 	audio_player.play()
+	
+func check_connected_joypad():
+	if Input.get_connected_joypads().size() > 0:
+		joystick_connected = true
