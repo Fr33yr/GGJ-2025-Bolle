@@ -1,22 +1,22 @@
 extends CharacterBody2D
 
-class_name Enemy1
+class_name Enemy3
 
-@onready var audio_stream_player = $AudioStreamPlayer
 @onready var audio_stream_randomizer = $AudioStreamRandomizer
+@onready var enemy_laughter_sfx = $EnemyLaughterSFX
 @onready var hp_system = $HP_System
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var hp_bar = $HP_Bar
-@onready var area_2d = $Area2D
 @onready var hitbox = $Area2D/Hitbox
+@onready var area_2d = $Area2D
 
 @export var speed = 350.0
-@export var chase_speed = 550.0
+@export var chase_speed = 450.0
 @export var patrol_path: Array[Marker2D] = []
 @export var patrol_wait_time = 0
 @export var damage = 1
-@export var hp_max: int = 3
+@export var hp_max: int = 10
 
 var current_patrol_target = 0
 var wait_timer = 0.0
@@ -63,9 +63,10 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play("idle")
 		move_along_path(delta)
 	elif chasing:
-		chase_player(delta)
 		animated_sprite_2d.play("chasing")
-		
+		chase_player(delta)
+	
+
 func move_along_path(delta: float):
 	var target_position = patrol_path[current_patrol_target].global_position
 	var direction = (target_position - position).normalized()
@@ -88,16 +89,17 @@ func chase_player(delta: float):
 	var distance_to_target = position.distance_to(player_position)
 	
 	if distance_to_target > chase_speed * delta:
-		velocity = direction * chase_speed
+		velocity = direction * speed
 		move_and_slide()
 
 func _on_player_detector_body_entered(body):
 	if body is Player:
 		chasing = true
 		player = body
-		audio_stream_player.play()
+		enemy_laughter_sfx.play()
 
 
 func _on_player_detector_body_exited(body):
 	if body is Player:
 		chasing = false
+	

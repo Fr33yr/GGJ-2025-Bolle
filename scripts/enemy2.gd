@@ -4,6 +4,7 @@ class_name Enemy2
 
 const bubble_scene = preload("res://scenes/bubble_green.tscn")
 
+@onready var audio_stream_randomizer = $AudioStreamRandomizer
 @onready var shoot_bubble_sfx = $ShootBubbleSFX
 @onready var enemy_laughter_sfx = $EnemyLaughterSFX
 @onready var hp_system = $HP_System
@@ -11,13 +12,14 @@ const bubble_scene = preload("res://scenes/bubble_green.tscn")
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var hp_bar = $HP_Bar
 @onready var hitbox = $Area2D/Hitbox
+@onready var area_2d = $Area2D
 
 @export var speed = 350.0
-@export var chase_speed = 350.0
+@export var chase_speed = 400.0
 @export var patrol_path: Array[Marker2D] = []
 @export var patrol_wait_time = 0
 @export var damage = 1
-@export var hp_max: int = 1
+@export var hp_max: int = 5
 
 var current_patrol_target = 0
 var wait_timer = 0.0
@@ -40,7 +42,14 @@ func apply_damage(damage_recieved: int):
 
 # Disables all functions. Called from signal.
 func on_Died():
-	#TODO: Dying animation. ALSO SFX
+	audio_stream_randomizer.play()
+	area_2d.monitoring = false
+	area_2d.monitorable = false
+	animated_sprite_2d.visible = false
+	collision_shape_2d.set_deferred("disabled",true)
+	hitbox.set_deferred("disabled",true)
+	hp_bar.visible = false
+	await get_tree().create_timer(0.5).timeout
 	queue_free()
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:

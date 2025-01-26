@@ -1,12 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://b08lx1offh8ek"]
+[gd_scene load_steps=16 format=3 uid="uid://b08lx1offh8ek"]
 
 [ext_resource type="Script" path="res://scripts/enemy1.gd" id="1_e1786"]
 [ext_resource type="Texture2D" uid="uid://c0hmgb1rb7fuw" path="res://assets/enemies/Enemigo 1 A.png" id="2_14ffa"]
 [ext_resource type="Texture2D" uid="uid://dylxqeyjhc8q0" path="res://assets/enemies/Enemigo 1 B.png" id="2_dpale"]
 [ext_resource type="AudioStream" uid="uid://djscnudp61nu2" path="res://sound/SFX/Fx_MonsterLaught_1.wav" id="2_vsb86"]
 [ext_resource type="Texture2D" uid="uid://cln5yoi2m122" path="res://assets/enemies/Enemigo 1 C.png" id="3_5mum8"]
+[ext_resource type="AudioStream" uid="uid://br7ml60w62gpn" path="res://sound/SFX/Fx_BubbleExplotion1.wav" id="3_c4kmp"]
 [ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/hp_system.tscn" id="3_libdg"]
+[ext_resource type="AudioStream" uid="uid://bmpt0vjaca8pf" path="res://sound/SFX/Fx_BubbleExplotion_2.wav" id="4_mp6nu"]
 [ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/hp_bar.tscn" id="4_wxpug"]
+[ext_resource type="AudioStream" uid="uid://brw5xsjtpb2hs" path="res://sound/SFX/Fx_BubbleExplotion4.wav" id="5_70qa2"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pdyf3"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_vsb86")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kkigm"]
+streams_count = 3
+stream_0/stream = ExtResource("3_c4kmp")
+stream_1/stream = ExtResource("4_mp6nu")
+stream_2/stream = ExtResource("5_70qa2")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ee73c"]
 animations = [{
@@ -48,8 +62,11 @@ collision_mask = 0
 script = ExtResource("1_e1786")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_vsb86")
+stream = SubResource("AudioStreamRandomizer_pdyf3")
 bus = &"SFX"
+
+[node name="AudioStreamRandomizer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_kkigm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ee73c")

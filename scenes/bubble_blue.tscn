@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b13blqarytcyc"]
+[gd_scene load_steps=6 format=3 uid="uid://b13blqarytcyc"]
 
 [ext_resource type="Script" path="res://scripts/bubble_blue.gd" id="1_5vvfr"]
 [ext_resource type="Texture2D" uid="uid://2pnbvvkqib4l" path="res://assets/bubbles/Skip_BurbujaCeleste.png" id="2_7tl0j"]
+[ext_resource type="AudioStream" uid="uid://bajkt3jpo44hq" path="res://sound/SFX/Fx_BubbleExplotion_3.wav" id="4_88vn2"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h6ikj"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("4_88vn2")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5l6xw"]
 radius = 46.5242
@@ -10,6 +16,11 @@ radius = 46.5242
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_5vvfr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_h6ikj")
+volume_db = -10.0
+bus = &"SFX"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7tl0j")

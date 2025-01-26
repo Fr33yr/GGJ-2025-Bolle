@@ -14,6 +14,7 @@ extends Node2D
 
 const enemy1_scene = preload("res://scenes/enemy1.tscn")
 const enemy2_scene = preload("res://scenes/enemy2.tscn")
+const enemy3_scene = preload("res://scenes/enemy3.tscn")
 
 var elapsedTime = 0
 
@@ -31,10 +32,12 @@ func _on_player_bubble_shot(bubble_scene, location):
 func _on_timer_timeout():
 	var numero = randi_range(1,10)
 	var enemy
-	if numero>3:
-		enemy = enemy1_scene.instantiate()
-	else:
+	if numero<=3:
+		enemy = enemy3_scene.instantiate()
+	elif numero <=6:
 		enemy = enemy2_scene.instantiate()
+	else:
+		enemy = enemy1_scene.instantiate()
 		
 	var index = randi_range(0, enemy_spawners.size()-1)	
 	enemy.global_position = enemy_spawners[index].global_position

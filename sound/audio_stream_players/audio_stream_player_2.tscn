@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnbg2bq32khxq"]
+
+[ext_resource type="AudioStream" uid="uid://bmpt0vjaca8pf" path="res://sound/SFX/Fx_BubbleExplotion_2.wav" id="1_mnye8"]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer"]
+stream = ExtResource("1_mnye8")
+bus = &"SFX"

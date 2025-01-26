@@ -10,7 +10,6 @@ signal bubble_shot
 @onready var hp_system = $HP_System
 @onready var collision_shape_2d = $CollisionShape2D
 
-
 @export var hp_max: int = 3
 @export var move_speed : float = 750
 @export var friction : float = 1000
@@ -39,13 +38,13 @@ func on_Died():
 	collision_shape_2d.disabled = true
 	#TODO: Should play dying animation first, right?. ALSO SFX
 	animated_sprite.visible = false
-	await get_tree().create_timer(2.5).timeout 
+	await get_tree().create_timer(0.1).timeout 
 	get_tree().change_scene_to_file("res://scenes/defeat.tscn")
 	
 # Checks for contact with other objects. Verifies through class name.
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var areaParent = area.get_parent()
-	if areaParent is Enemy1 || areaParent is Enemy2 || areaParent is Bubble_Green:
+	if areaParent is Enemy1 || areaParent is Enemy2 || areaParent is Enemy3 || areaParent is Bubble_Green:
 		var damage = (areaParent).damage
 		hp_system.apply_damage(damage)
 		print("Player recieves ", damage," points of damage!")
