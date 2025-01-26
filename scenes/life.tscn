@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmxmkjwc0t8dl"]
+
+[ext_resource type="Texture2D" uid="uid://c6mo5y6wqrmx8" path="res://assets/ui/Skip_Vida.png" id="1_oghej"]
+
+[node name="Life" type="TextureRect"]
+texture = ExtResource("1_oghej")

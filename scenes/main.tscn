@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://2fafl4vg3o0k"]
+[gd_scene load_steps=12 format=3 uid="uid://2fafl4vg3o0k"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ea06o"]
 [ext_resource type="PackedScene" uid="uid://bkomlwalru0he" path="res://scenes/player.tscn" id="1_ttw0g"]
+[ext_resource type="Script" path="res://scripts/player_ui.gd" id="2_1tcrd"]
 [ext_resource type="AudioStream" uid="uid://b28bv0cj8fxor" path="res://sound/SFX/Fx_MonsterSpawn.wav" id="2_kfp8g"]
 [ext_resource type="Texture2D" uid="uid://deamjlfgywgn4" path="res://assets/background/escenario 1.png" id="2_y86k5"]
+[ext_resource type="PackedScene" uid="uid://dmxmkjwc0t8dl" path="res://scenes/life.tscn" id="3_pyem1"]
 [ext_resource type="AudioStream" uid="uid://51hnq7iigxf3" path="res://sound/music/Mx_Battle_lvl1.wav" id="5_uyb51"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_5xxj3"]
@@ -26,6 +28,32 @@ b = Vector2(-1850, -710)
 script = ExtResource("1_ea06o")
 enemy_spawners = [NodePath("EnemySpawners/EnemySpawn"), NodePath("EnemySpawners/EnemySpawn2"), NodePath("EnemySpawners/EnemySpawn3"), NodePath("EnemySpawners/EnemySpawn4")]
 enemy_markers = [NodePath("EnemyMarkers/Marker2D"), NodePath("EnemyMarkers/Marker2D2"), NodePath("EnemyMarkers/Marker2D3"), NodePath("EnemyMarkers/Marker2D4"), NodePath("EnemyMarkers/Marker2D5"), NodePath("EnemyMarkers/Marker2D6"), NodePath("EnemyMarkers/Marker2D7"), NodePath("EnemyMarkers/Marker2D8"), NodePath("EnemyMarkers/Marker2D9"), NodePath("EnemyMarkers/Marker2D10"), NodePath("EnemyMarkers/Marker2D11"), NodePath("EnemyMarkers/Marker2D12"), NodePath("EnemyMarkers/Marker2D13"), NodePath("EnemyMarkers/Marker2D14"), NodePath("EnemyMarkers/Marker2D15"), NodePath("EnemyMarkers/Marker2D16"), NodePath("EnemyMarkers/Marker2D17"), NodePath("EnemyMarkers/Marker2D18"), NodePath("EnemyMarkers/Marker2D19"), NodePath("EnemyMarkers/Marker2D20"), NodePath("EnemyMarkers/Marker2D21"), NodePath("EnemyMarkers/Marker2D22"), NodePath("EnemyMarkers/Marker2D23"), NodePath("EnemyMarkers/Marker2D24")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_1tcrd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerUI"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 65.0
+offset_right = 450.0
+offset_bottom = 155.0
+theme_override_constants/separation = 32
+
+[node name="Life" parent="CanvasLayer/PlayerUI/HBoxContainer" instance=ExtResource("3_pyem1")]
+layout_mode = 2
+
+[node name="Life2" parent="CanvasLayer/PlayerUI/HBoxContainer" instance=ExtResource("3_pyem1")]
+layout_mode = 2
+
+[node name="Life3" parent="CanvasLayer/PlayerUI/HBoxContainer" instance=ExtResource("3_pyem1")]
+layout_mode = 2
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
