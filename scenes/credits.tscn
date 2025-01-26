@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpbyafta06is"]
+[gd_scene load_steps=6 format=3 uid="uid://bpbyafta06is"]
 
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_chc0c"]
 [ext_resource type="Texture2D" uid="uid://cjht713w0hucv" path="res://assets/background/Skip_Creditos.png" id="1_u2pel"]
 [ext_resource type="AudioStream" uid="uid://1rnc3ena0wgi" path="res://sound/music/Mx_Skip_Creditos.wav" id="2_lwil7"]
+[ext_resource type="Texture2D" uid="uid://diprni7tw8tl7" path="res://assets/ui/Skip_BotonSalir.png" id="4_6qbkw"]
+[ext_resource type="Texture2D" uid="uid://dns8g84rmn56q" path="res://assets/ui/Skip_BotonSalir_apretado.png" id="5_b8x44"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -12,6 +15,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_chc0c")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -33,3 +37,25 @@ stream = ExtResource("2_lwil7")
 volume_db = 3.0
 autoplay = true
 bus = &"Music"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1088.0
+offset_top = 776.0
+offset_right = 1782.0
+offset_bottom = 931.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 128
+
+[node name="ToMenu" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_6qbkw")
+texture_pressed = ExtResource("5_b8x44")
+
+[connection signal="pressed" from="HBoxContainer/ToMenu" to="." method="_on_to_menu_pressed"]

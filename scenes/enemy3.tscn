@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5t4dhrrqmsk1"]
+[gd_scene load_steps=16 format=3 uid="uid://b5t4dhrrqmsk1"]
 
 [ext_resource type="Script" path="res://scripts/enemy3.gd" id="1_hbevn"]
-[ext_resource type="AudioStream" uid="uid://c125wivcp177" path="res://sound/SFX/Fx_MonsterLaught_2.wav" id="2_y7en1"]
+[ext_resource type="AudioStream" uid="uid://by5nj82jqmmpb" path="res://sound/SFX/Fx_MonsterSpawn3.wav" id="2_p1xk0"]
 [ext_resource type="Texture2D" uid="uid://db2u5qxi4lnhl" path="res://assets/enemies/Enemigo 3 B.png" id="4_jf111"]
 [ext_resource type="Texture2D" uid="uid://e8h2lfbh7wll" path="res://assets/enemies/Enemigo 3 C.png" id="5_k8pkj"]
 [ext_resource type="Texture2D" uid="uid://bpwik5waomo8u" path="res://assets/enemies/Enemigo 3 A.png" id="6_w2l43"]
@@ -10,6 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/hp_bar.tscn" id="8_shed3"]
 [ext_resource type="AudioStream" uid="uid://bmpt0vjaca8pf" path="res://sound/SFX/Fx_BubbleExplotion_2.wav" id="9_8r1mx"]
 [ext_resource type="AudioStream" uid="uid://brw5xsjtpb2hs" path="res://sound/SFX/Fx_BubbleExplotion4.wav" id="10_754wv"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_khsv7"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_p1xk0")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5o6vm"]
 animations = [{
@@ -56,7 +61,8 @@ collision_mask = 0
 script = ExtResource("1_hbevn")
 
 [node name="EnemyLaughterSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_y7en1")
+stream = SubResource("AudioStreamRandomizer_khsv7")
+volume_db = -12.0
 bus = &"SFX"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
