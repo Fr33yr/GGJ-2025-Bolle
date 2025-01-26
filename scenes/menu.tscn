@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxeijjuq25l1a"]
+[gd_scene load_steps=10 format=3 uid="uid://bxeijjuq25l1a"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_7qtmb"]
 [ext_resource type="Texture2D" uid="uid://c7cttbagpogms" path="res://assets/ui/Skip_BotonJugar.png" id="2_8kgnw"]
-[ext_resource type="Texture2D" uid="uid://bt6lpmq10moi1" path="res://assets/ui/Skip_Portada.png" id="2_f0bt8"]
+[ext_resource type="Texture2D" uid="uid://b4hveq3gw05xq" path="res://assets/ui/Skip_FondoMenu.png" id="2_fcp5m"]
 [ext_resource type="Texture2D" uid="uid://dowvxafenklxe" path="res://assets/ui/Skip_BotonCreditos.png" id="3_40dys"]
+[ext_resource type="Texture2D" uid="uid://dsvqx0d6poxh7" path="res://assets/ui/Skip_BotonJugar_apretado.png" id="4_av4d7"]
 [ext_resource type="Texture2D" uid="uid://diprni7tw8tl7" path="res://assets/ui/Skip_BotonSalir.png" id="4_uqn72"]
+[ext_resource type="AudioStream" uid="uid://dlcm7bvip50lg" path="res://sound/music/Mx_Menú.wav" id="6_4f3ax"]
+[ext_resource type="Texture2D" uid="uid://ctske1r7wn5mq" path="res://assets/ui/Skip_BotonCreditos_apretado.png" id="6_bqsfa"]
+[ext_resource type="Texture2D" uid="uid://dns8g84rmn56q" path="res://assets/ui/Skip_BotonSalir_apretado.png" id="8_4s834"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -20,6 +24,7 @@ size_flags_vertical = 3
 script = ExtResource("1_7qtmb")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -27,12 +32,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -2094.0
-offset_top = -1199.0
+offset_top = -1373.0
 offset_right = 2094.0
 offset_bottom = 1199.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_f0bt8")
+texture = ExtResource("2_fcp5m")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -52,14 +57,23 @@ theme_override_constants/separation = 128
 [node name="Play" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("2_8kgnw")
+texture_pressed = ExtResource("4_av4d7")
 
 [node name="Credits" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("3_40dys")
+texture_pressed = ExtResource("6_bqsfa")
 
 [node name="Exit" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("4_uqn72")
+texture_pressed = ExtResource("8_4s834")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_4f3ax")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Buttons/Credits" to="." method="_on_credits_pressed"]

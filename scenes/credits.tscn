@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpbyafta06is"]
+[gd_scene load_steps=3 format=3 uid="uid://bpbyafta06is"]
 
-[ext_resource type="Script" path="res://scenes/credits.gd" id="1_en1im"]
+[ext_resource type="Texture2D" uid="uid://cjht713w0hucv" path="res://assets/background/Skip_Creditos.png" id="1_u2pel"]
+[ext_resource type="AudioStream" uid="uid://1rnc3ena0wgi" path="res://sound/music/Mx_Skip_Creditos.wav" id="2_lwil7"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -11,26 +12,24 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_en1im")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -543.5
-offset_top = -87.5
-offset_right = 543.5
-offset_bottom = 87.5
+offset_left = -2007.0
+offset_top = -1139.0
+offset_right = 1957.0
+offset_bottom = 1091.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+texture = ExtResource("1_u2pel")
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 128
-text = "Working progress"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_lwil7")
+volume_db = 3.0
+autoplay = true
+bus = &"Music"
