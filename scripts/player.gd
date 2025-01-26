@@ -4,7 +4,7 @@ class_name Player
 
 signal bubble_shot
 
-@onready var sprite_2d = $Sprite2D
+@onready var animated_sprite= $AnimatedSprite2D
 @onready var muzzle = $Muzzle
 @onready var audio_player = $AudioStreamPlayer2D
 @onready var hp_system = $HP_System
@@ -38,7 +38,7 @@ func on_Died():
 	set_physics_process(false)
 	collision_shape_2d.disabled = true
 	#TODO: Should play dying animation first, right?. ALSO SFX
-	sprite_2d.visible = false
+	animated_sprite.visible = false
 	
 # Checks for contact with other objects. Verifies through class name.
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -60,10 +60,21 @@ func _physics_process(delta):
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")
 	character_direction = character_direction.normalized()
+	
+	if character_direction.y < 0:
+		animated_sprite.play("move_up")
+	elif character_direction.y > 0:
+		animated_sprite.play("move_down")
+	
+	if character_direction.x > 0:
+		animated_sprite.play("move_right")
+	elif character_direction.x < 0:
+		animated_sprite.play("move_left")
 		
 	if character_direction != Vector2.ZERO:
 		velocity = character_direction.normalized() * move_speed
 	else:
+		animated_sprite.play("idle")
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta) * Vector2.ZERO
 	update_muzzle_direction()
 	move_and_slide()
