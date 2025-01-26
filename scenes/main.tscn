@@ -25,7 +25,7 @@ b = Vector2(-1850, -710)
 [node name="Main" type="Node2D" node_paths=PackedStringArray("enemy_spawners", "enemy_markers")]
 script = ExtResource("1_ea06o")
 enemy_spawners = [NodePath("EnemySpawners/EnemySpawn"), NodePath("EnemySpawners/EnemySpawn2"), NodePath("EnemySpawners/EnemySpawn3"), NodePath("EnemySpawners/EnemySpawn4")]
-enemy_markers = [NodePath("EnemyMarkers/Marker2D"), NodePath("EnemyMarkers/Marker2D2"), NodePath("EnemyMarkers/Marker2D3"), NodePath("EnemyMarkers/Marker2D4"), NodePath("EnemyMarkers/Marker2D5"), NodePath("EnemyMarkers/Marker2D6"), NodePath("EnemyMarkers/Marker2D7"), NodePath("EnemyMarkers/Marker2D8"), NodePath("EnemyMarkers/Marker2D9"), NodePath("EnemyMarkers/Marker2D10"), NodePath("EnemyMarkers/Marker2D11"), NodePath("EnemyMarkers/Marker2D12"), NodePath("EnemyMarkers/Marker2D13"), NodePath("EnemyMarkers/Marker2D14"), NodePath("EnemyMarkers/Marker2D15"), NodePath("EnemyMarkers/Marker2D16")]
+enemy_markers = [NodePath("EnemyMarkers/Marker2D"), NodePath("EnemyMarkers/Marker2D2"), NodePath("EnemyMarkers/Marker2D3"), NodePath("EnemyMarkers/Marker2D4"), NodePath("EnemyMarkers/Marker2D5"), NodePath("EnemyMarkers/Marker2D6"), NodePath("EnemyMarkers/Marker2D7"), NodePath("EnemyMarkers/Marker2D8"), NodePath("EnemyMarkers/Marker2D9"), NodePath("EnemyMarkers/Marker2D10"), NodePath("EnemyMarkers/Marker2D11"), NodePath("EnemyMarkers/Marker2D12"), NodePath("EnemyMarkers/Marker2D13"), NodePath("EnemyMarkers/Marker2D14"), NodePath("EnemyMarkers/Marker2D15"), NodePath("EnemyMarkers/Marker2D16"), NodePath("EnemyMarkers/Marker2D17"), NodePath("EnemyMarkers/Marker2D18"), NodePath("EnemyMarkers/Marker2D19"), NodePath("EnemyMarkers/Marker2D20"), NodePath("EnemyMarkers/Marker2D21"), NodePath("EnemyMarkers/Marker2D22"), NodePath("EnemyMarkers/Marker2D23"), NodePath("EnemyMarkers/Marker2D24")]
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -112,6 +112,30 @@ position = Vector2(856, 693)
 
 [node name="Marker2D16" type="Marker2D" parent="EnemyMarkers"]
 position = Vector2(609, -476)
+
+[node name="Marker2D17" type="Marker2D" parent="EnemyMarkers"]
+position = Vector2(258, 3)
+
+[node name="Marker2D18" type="Marker2D" parent="EnemyMarkers"]
+position = Vector2(-259, 3)
+
+[node name="Marker2D19" type="Marker2D" parent="EnemyMarkers"]
+position = Vector2(-1728, 128)
+
+[node name="Marker2D20" type="Marker2D" parent="EnemyMarkers"]
+position = Vector2(1734, 124)
+
+[node name="Marker2D21" type="Marker2D" parent="EnemyMarkers"]
+position = Vector2(-380, 705)
+
+[node name="Marker2D22" type="Marker2D" parent="EnemyMarkers"]
+position = Vector2(375, 709)
+
+[node name="Marker2D23" type="Marker2D" parent="EnemyMarkers"]
+position = Vector2(-1113, -473)
+
+[node name="Marker2D24" type="Marker2D" parent="EnemyMarkers"]
+position = Vector2(1103, -465)
 
 [node name="EnemySpawners" type="Node2D" parent="."]
 

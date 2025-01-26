@@ -1,21 +1,68 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2wd8viwu350v"]
+[gd_scene load_steps=12 format=3 uid="uid://b2wd8viwu350v"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_degdq"]
+[ext_resource type="Script" path="res://scripts/enemy2.gd" id="1_xfqgn"]
+[ext_resource type="AudioStream" uid="uid://c125wivcp177" path="res://sound/SFX/Fx_MonsterLaught_2.wav" id="2_cb2ox"]
 [ext_resource type="Texture2D" uid="uid://c71mp2w3itwti" path="res://assets/enemies/Enemigo 2 A.png" id="2_ug6gb"]
+[ext_resource type="Texture2D" uid="uid://ct3vat0785ghj" path="res://assets/enemies/Enemigo 2 B.png" id="3_657yu"]
+[ext_resource type="AudioStream" uid="uid://d1qr1de4uctvc" path="res://sound/SFX/Fx_BubbleShot.wav" id="3_dva6u"]
 [ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/hp_system.tscn" id="3_xtnne"]
+[ext_resource type="Texture2D" uid="uid://dvmlcolj2i8cs" path="res://assets/enemies/Enemigo 2 C.png" id="4_jtcy2"]
 [ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/hp_bar.tscn" id="4_wktj2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5o6vm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_657yu")
+}],
+"loop": true,
+"name": &"chasing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jtcy2")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ug6gb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_er8se"]
 radius = 92.9139
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqxh6"]
+radius = 1189.01
+
 [node name="Enemy2" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("1_degdq")
+script = ExtResource("1_xfqgn")
 hp_max = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ug6gb")
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="EnemyLaughterSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cb2ox")
+bus = &"SFX"
+
+[node name="ShootBubbleSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dva6u")
+bus = &"SFX"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5o6vm")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_er8se")
@@ -35,4 +82,14 @@ offset_top = -150.0
 offset_right = 75.0
 offset_bottom = -125.0
 
+[node name="Player Detector" type="Area2D" parent="."]
+collision_layer = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Detector"]
+shape = SubResource("CircleShape2D_fqxh6")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Player Detector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="Player Detector" to="." method="_on_player_detector_body_exited"]

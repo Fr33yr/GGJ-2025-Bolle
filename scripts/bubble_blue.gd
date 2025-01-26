@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-class_name Bubble
+class_name Bubble_Blue
 
 @onready var player = $"../../Player"
 @onready var collision_shape_2d = $CollisionShape2D
@@ -23,5 +23,6 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_area_2d_area_entered(area):
-	if area.get_parent() is Enemy:
+	var areaParent = area.get_parent()
+	if areaParent is Enemy1 || areaParent is Enemy2:
 		queue_free()

@@ -30,7 +30,7 @@ func _on_player_bubble_shot(bubble_scene, location):
 
 func _on_timer_timeout():
 	var numero = randi_range(1,10)
-	var enemy : Enemy
+	var enemy
 	if numero>3:
 		enemy = enemy1_scene.instantiate()
 	else:

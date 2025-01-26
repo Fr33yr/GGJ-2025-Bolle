@@ -1,20 +1,59 @@
-[gd_scene load_steps=6 format=3 uid="uid://b08lx1offh8ek"]
+[gd_scene load_steps=11 format=3 uid="uid://b08lx1offh8ek"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_e1786"]
+[ext_resource type="Script" path="res://scripts/enemy1.gd" id="1_e1786"]
 [ext_resource type="Texture2D" uid="uid://c0hmgb1rb7fuw" path="res://assets/enemies/Enemigo 1 A.png" id="2_14ffa"]
+[ext_resource type="Texture2D" uid="uid://dylxqeyjhc8q0" path="res://assets/enemies/Enemigo 1 B.png" id="2_dpale"]
+[ext_resource type="AudioStream" uid="uid://djscnudp61nu2" path="res://sound/SFX/Fx_MonsterLaught_1.wav" id="2_vsb86"]
+[ext_resource type="Texture2D" uid="uid://cln5yoi2m122" path="res://assets/enemies/Enemigo 1 C.png" id="3_5mum8"]
 [ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/hp_system.tscn" id="3_libdg"]
 [ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/hp_bar.tscn" id="4_wxpug"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ee73c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dpale")
+}],
+"loop": true,
+"name": &"chasing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5mum8")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_14ffa")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_er8se"]
 radius = 92.9139
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5u5ol"]
+radius = 758.111
+
 [node name="Enemy 1" type="CharacterBody2D"]
+position = Vector2(0, -3)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_e1786")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_14ffa")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vsb86")
+bus = &"SFX"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ee73c")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_er8se")
@@ -26,6 +65,13 @@ collision_mask = 4
 [node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_er8se")
 
+[node name="Player Detector" type="Area2D" parent="."]
+collision_layer = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Detector"]
+shape = SubResource("CircleShape2D_5u5ol")
+
 [node name="HP_System" parent="." instance=ExtResource("3_libdg")]
 
 [node name="HP_Bar" parent="." instance=ExtResource("4_wxpug")]
@@ -35,3 +81,5 @@ offset_right = 75.0
 offset_bottom = -125.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Player Detector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="Player Detector" to="." method="_on_player_detector_body_exited"]

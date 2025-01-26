@@ -1,21 +1,29 @@
 extends CharacterBody2D
 
-class_name Enemy
+class_name Enemy2
 
+const bubble_scene = preload("res://scenes/bubble_green.tscn")
+
+@onready var shoot_bubble_sfx = $ShootBubbleSFX
+@onready var enemy_laughter_sfx = $EnemyLaughterSFX
 @onready var hp_system = $HP_System
-@onready var sprite_2d = $Sprite2D
+@onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var hp_bar = $HP_Bar
 @onready var hitbox = $Area2D/Hitbox
 
-@export var speed = 750.0
+@export var speed = 350.0
+@export var chase_speed = 350.0
 @export var patrol_path: Array[Marker2D] = []
-@export var patrol_wait_time = 1.0
+@export var patrol_wait_time = 0
 @export var damage = 1
 @export var hp_max: int = 1
 
 var current_patrol_target = 0
 var wait_timer = 0.0
+
+var chasing: bool = false
+var player: Player
 
 # Initializes the HPSystem.
 func _ready() -> void:
@@ -36,32 +44,63 @@ func on_Died():
 	queue_free()
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.get_parent() is Bubble:
-		var damage_recieved = (area.get_parent() as Bubble).damage
+	if area.get_parent() is Bubble_Blue:
+		var damage_recieved = (area.get_parent() as Bubble_Blue).damage
 		hp_system.apply_damage(damage_recieved)
 
 func take_damage(damage_recieved: int) -> void:
+	animated_sprite_2d.play("dead")
 	hp_bar.value -= damage_recieved
 
 func _physics_process(delta: float) -> void:
-	if patrol_path.size() > 1:
+	if !chasing && patrol_path.size() > 1:
+		animated_sprite_2d.play("idle")
 		move_along_path(delta)
-		
+	elif chasing:
+		animated_sprite_2d.play("chasing")
+		chase_player(delta)
+	
+
 func move_along_path(delta: float):
 	var target_position = patrol_path[current_patrol_target].global_position
 	var direction = (target_position - position).normalized()
 	var distance_to_target = position.distance_to(target_position)
 	
 	if distance_to_target > speed * delta:
-		#TODO: Movement Animation.
 		velocity = direction * speed
 		move_and_slide()
 	else:
-		#TODO: Idle Animation.
 		position = target_position
 		wait_timer += delta
 		if wait_timer >= patrol_wait_time:
 			wait_timer = 0.0
 			current_patrol_target = (current_patrol_target + 1) % patrol_path.size()
 		
+
+func chase_player(delta: float):
+	var player_position = player.global_position
+	var direction = (player_position - position).normalized()
+	var distance_to_target = position.distance_to(player_position)
 	
+	if distance_to_target > chase_speed * delta:
+		velocity = direction * speed
+		move_and_slide()
+
+func _on_player_detector_body_entered(body):
+	if body is Player:
+		chasing = true
+		player = body
+		enemy_laughter_sfx.play()
+
+
+func _on_player_detector_body_exited(body):
+	if body is Player:
+		chasing = false
+		
+
+func _on_timer_timeout():
+	if chasing:
+		var bubble = bubble_scene.instantiate()
+		bubble.direction = player.global_position
+		bubble.global_position = global_position
+		shoot_bubble_sfx.play()

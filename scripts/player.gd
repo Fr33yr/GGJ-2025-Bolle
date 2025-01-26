@@ -42,9 +42,9 @@ func on_Died():
 	
 # Checks for contact with other objects. Verifies through class name.
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("Player contacts with: ", area.get_parent().name)
-	if area.get_parent() is Enemy:
-		var damage = (area.get_parent() as Enemy).damage
+	var areaParent = area.get_parent()
+	if areaParent is Enemy1 || areaParent is Enemy2 || areaParent is Bubble_Green:
+		var damage = (areaParent).damage
 		hp_system.apply_damage(damage)
 		print("Player recieves ", damage," points of damage!")
 
