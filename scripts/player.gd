@@ -77,10 +77,11 @@ func update_muzzle_direction():
 			$Muzzle.rotation = aim_input.angle()
 			aim_direction = aim_input.normalized()
 	else:
-		var global_mouse_position = get_global_mouse_position()
-		var local_mouse_position = muzzle.to_local(global_mouse_position)
-		$Muzzle.rotation = local_mouse_position.angle()
-		aim_direction = local_mouse_position.normalized()
+		var mouse_position = get_global_mouse_position()
+		var muzzle_global_position = muzzle.global_position
+		var direction = mouse_position - muzzle_global_position
+		$Muzzle.rotation = direction.angle()
+		aim_direction = direction.normalized()
 		
 func shoot():
 	if aim_direction == Vector2.ZERO: return
