@@ -39,6 +39,8 @@ func on_Died():
 	collision_shape_2d.disabled = true
 	#TODO: Should play dying animation first, right?. ALSO SFX
 	animated_sprite.visible = false
+	await get_tree().create_timer(2.5).timeout 
+	get_tree().change_scene_to_file("res://scenes/defeat.tscn")
 	
 # Checks for contact with other objects. Verifies through class name.
 func _on_area_2d_area_entered(area: Area2D) -> void:
