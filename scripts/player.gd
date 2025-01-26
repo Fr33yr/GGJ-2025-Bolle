@@ -72,10 +72,10 @@ func update_muzzle_direction():
 	if joystick_connected: #Use Joypad Input
 		var aim_input = Vector2(Input.get_axis("aim_left", "aim_right"),
 	 	Input.get_axis("aim_up", "aim_down"))
-		aim_direction = aim_input
+		aim_direction = aim_input.normalized()
 		if aim_input.length() > 0.1: #Dead zone check
 			$Muzzle.rotation = aim_input.angle()
-			aim_direction = aim_input
+			aim_direction = aim_input.normalized()
 	else:
 		var global_mouse_position = get_global_mouse_position()
 		var local_mouse_position = muzzle.to_local(global_mouse_position)
