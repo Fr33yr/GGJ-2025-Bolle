@@ -38,6 +38,24 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_1tcrd")
 
+[node name="CountdownTimer" type="Timer" parent="CanvasLayer/PlayerUI"]
+wait_time = 121.0
+autostart = true
+
+[node name="Time" type="Label" parent="CanvasLayer/PlayerUI"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 3490.0
+offset_top = -1.0
+offset_right = 3709.0
+offset_bottom = 174.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 128
+text = "$Time"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerUI"]
 layout_mode = 0
 offset_left = 65.0
