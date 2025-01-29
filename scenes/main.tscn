@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2fafl4vg3o0k"]
+[gd_scene load_steps=13 format=3 uid="uid://2fafl4vg3o0k"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ea06o"]
 [ext_resource type="PackedScene" uid="uid://bkomlwalru0he" path="res://scenes/player.tscn" id="1_ttw0g"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://b28bv0cj8fxor" path="res://sound/SFX/Fx_MonsterSpawn.wav" id="2_kfp8g"]
 [ext_resource type="Texture2D" uid="uid://deamjlfgywgn4" path="res://assets/background/escenario 1.png" id="2_y86k5"]
 [ext_resource type="PackedScene" uid="uid://dmxmkjwc0t8dl" path="res://scenes/life.tscn" id="3_pyem1"]
+[ext_resource type="Texture2D" uid="uid://17u0mfj1sy2c" path="res://assets/ui/Skip_Ventana.png" id="4_b1x2f"]
 [ext_resource type="AudioStream" uid="uid://51hnq7iigxf3" path="res://sound/music/Mx_Battle_lvl1.wav" id="5_uyb51"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_5xxj3"]
@@ -56,12 +57,19 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 128
 text = "$Time"
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PlayerUI"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 464.0
+offset_bottom = 144.0
+texture = ExtResource("4_b1x2f")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerUI"]
 layout_mode = 0
 offset_left = 65.0
-offset_top = 65.0
+offset_top = 25.0
 offset_right = 450.0
-offset_bottom = 155.0
+offset_bottom = 115.0
 theme_override_constants/separation = 32
 
 [node name="Life" parent="CanvasLayer/PlayerUI/HBoxContainer" instance=ExtResource("3_pyem1")]
