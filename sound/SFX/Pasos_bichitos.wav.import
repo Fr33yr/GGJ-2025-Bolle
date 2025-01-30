@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ypwebmcg8y4f"
-path="res://.godot/imported/Pasos_bichitos.wav-03fd01327621798a7e4c89c3f794d170.sample"
+path="res://.godot/imported/Pasos_bichitos.wav-4315020f009d21445cb28386fa5ab7ea.sample"
 
 [deps]
 
-source_file="res://sound/SFX/Pasos_bichitos.wav"
-dest_files=["res://.godot/imported/Pasos_bichitos.wav-03fd01327621798a7e4c89c3f794d170.sample"]
+source_file="res://sound/sfx/Pasos_bichitos.wav"
+dest_files=["res://.godot/imported/Pasos_bichitos.wav-4315020f009d21445cb28386fa5ab7ea.sample"]
 
 [params]
 

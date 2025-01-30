@@ -1,15 +1,15 @@
 [gd_scene load_steps=16 format=3 uid="uid://b08lx1offh8ek"]
 
-[ext_resource type="Script" path="res://scripts/enemy1.gd" id="1_e1786"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy1.gd" id="1_e1786"]
 [ext_resource type="Texture2D" uid="uid://c0hmgb1rb7fuw" path="res://assets/enemies/Enemigo 1 A.png" id="2_14ffa"]
 [ext_resource type="Texture2D" uid="uid://dylxqeyjhc8q0" path="res://assets/enemies/Enemigo 1 B.png" id="2_dpale"]
-[ext_resource type="AudioStream" uid="uid://djscnudp61nu2" path="res://sound/SFX/Fx_MonsterLaught_1.wav" id="2_vsb86"]
+[ext_resource type="AudioStream" uid="uid://djscnudp61nu2" path="res://sound/sfx/Fx_MonsterLaught_1.wav" id="2_vsb86"]
 [ext_resource type="Texture2D" uid="uid://cln5yoi2m122" path="res://assets/enemies/Enemigo 1 C.png" id="3_5mum8"]
-[ext_resource type="AudioStream" uid="uid://br7ml60w62gpn" path="res://sound/SFX/Fx_BubbleExplotion1.wav" id="3_c4kmp"]
-[ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/hp_system.tscn" id="3_libdg"]
-[ext_resource type="AudioStream" uid="uid://bmpt0vjaca8pf" path="res://sound/SFX/Fx_BubbleExplotion_2.wav" id="4_mp6nu"]
-[ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/hp_bar.tscn" id="4_wxpug"]
-[ext_resource type="AudioStream" uid="uid://brw5xsjtpb2hs" path="res://sound/SFX/Fx_BubbleExplotion4.wav" id="5_70qa2"]
+[ext_resource type="AudioStream" uid="uid://br7ml60w62gpn" path="res://sound/sfx/Fx_BubbleExplotion1.wav" id="3_c4kmp"]
+[ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/commons/hp_system.tscn" id="3_libdg"]
+[ext_resource type="AudioStream" uid="uid://bmpt0vjaca8pf" path="res://sound/sfx/Fx_BubbleExplotion_2.wav" id="4_mp6nu"]
+[ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/commons/hp_bar.tscn" id="4_wxpug"]
+[ext_resource type="AudioStream" uid="uid://brw5xsjtpb2hs" path="res://sound/sfx/Fx_BubbleExplotion4.wav" id="5_70qa2"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pdyf3"]
 random_pitch = 1.1

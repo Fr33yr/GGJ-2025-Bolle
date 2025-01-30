@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Enemy2
 
-const bubble_scene = preload("res://scenes/bubble_green.tscn")
+const bubble_scene = preload("res://scenes/bubbles/bubble_green.tscn")
 
 @onready var audio_stream_randomizer = $AudioStreamRandomizer
 @onready var shoot_bubble_sfx = $ShootBubbleSFX

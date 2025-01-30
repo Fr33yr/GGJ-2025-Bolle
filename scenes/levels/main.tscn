@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://2fafl4vg3o0k"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_ea06o"]
-[ext_resource type="PackedScene" uid="uid://bkomlwalru0he" path="res://scenes/player.tscn" id="1_ttw0g"]
-[ext_resource type="Script" path="res://scripts/player_ui.gd" id="2_1tcrd"]
-[ext_resource type="AudioStream" uid="uid://b28bv0cj8fxor" path="res://sound/SFX/Fx_MonsterSpawn.wav" id="2_kfp8g"]
+[ext_resource type="Script" path="res://scripts/levels/main.gd" id="1_ea06o"]
+[ext_resource type="PackedScene" uid="uid://bkomlwalru0he" path="res://scenes/player/player.tscn" id="1_ttw0g"]
+[ext_resource type="Script" path="res://scripts/ui/player_ui.gd" id="2_1tcrd"]
+[ext_resource type="AudioStream" uid="uid://b28bv0cj8fxor" path="res://sound/sfx/Fx_MonsterSpawn.wav" id="2_kfp8g"]
 [ext_resource type="Texture2D" uid="uid://deamjlfgywgn4" path="res://assets/background/escenario 1.png" id="2_y86k5"]
-[ext_resource type="PackedScene" uid="uid://dmxmkjwc0t8dl" path="res://scenes/life.tscn" id="3_pyem1"]
+[ext_resource type="PackedScene" uid="uid://dmxmkjwc0t8dl" path="res://scenes/ui/life.tscn" id="3_pyem1"]
 [ext_resource type="Texture2D" uid="uid://17u0mfj1sy2c" path="res://assets/ui/Skip_Ventana.png" id="4_b1x2f"]
 [ext_resource type="AudioStream" uid="uid://51hnq7iigxf3" path="res://sound/music/Mx_Battle_lvl1.wav" id="5_uyb51"]
 

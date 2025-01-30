@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b13blqarytcyc"]
 
-[ext_resource type="Script" path="res://scripts/bubble_blue.gd" id="1_5vvfr"]
+[ext_resource type="Script" path="res://scripts/bubbles/bubble_blue.gd" id="1_5vvfr"]
 [ext_resource type="Texture2D" uid="uid://2pnbvvkqib4l" path="res://assets/bubbles/Skip_BurbujaCeleste.png" id="2_7tl0j"]
-[ext_resource type="AudioStream" uid="uid://bajkt3jpo44hq" path="res://sound/SFX/Fx_BubbleExplotion_3.wav" id="4_88vn2"]
+[ext_resource type="AudioStream" uid="uid://bajkt3jpo44hq" path="res://sound/sfx/Fx_BubbleExplotion_3.wav" id="4_88vn2"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h6ikj"]
 random_pitch = 1.5

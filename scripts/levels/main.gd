@@ -12,9 +12,9 @@ extends Node2D
 @onready var enemy_spawn_timer = $EnemySpawnTimer
 @onready var enemy_spawn_accelerator = $EnemySpawnAccelerator
 
-const enemy1_scene = preload("res://scenes/enemy1.tscn")
-const enemy2_scene = preload("res://scenes/enemy2.tscn")
-const enemy3_scene = preload("res://scenes/enemy3.tscn")
+const enemy1_scene = preload("res://scenes/enemies/enemy1.tscn")
+const enemy2_scene = preload("res://scenes/enemies/enemy2.tscn")
+const enemy3_scene = preload("res://scenes/enemies/enemy3.tscn")
 
 var elapsedTime = 0
 
