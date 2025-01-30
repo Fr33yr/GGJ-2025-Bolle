@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://2fafl4vg3o0k"]
 
-[ext_resource type="Script" path="res://scripts/levels/main.gd" id="1_ea06o"]
+[ext_resource type="Script" path="res://scripts/levels/level_01.gd" id="1_ea06o"]
 [ext_resource type="PackedScene" uid="uid://bkomlwalru0he" path="res://scenes/player/player.tscn" id="1_ttw0g"]
 [ext_resource type="Script" path="res://scripts/ui/player_ui.gd" id="2_1tcrd"]
 [ext_resource type="AudioStream" uid="uid://b28bv0cj8fxor" path="res://sound/sfx/Fx_MonsterSpawn.wav" id="2_kfp8g"]
@@ -25,7 +25,7 @@ b = Vector2(1850, -710)
 a = Vector2(-1850, 955)
 b = Vector2(-1850, -710)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("enemy_spawners", "enemy_markers")]
+[node name="Level_01" type="Node2D" node_paths=PackedStringArray("enemy_spawners", "enemy_markers")]
 script = ExtResource("1_ea06o")
 enemy_spawners = [NodePath("EnemySpawners/EnemySpawn"), NodePath("EnemySpawners/EnemySpawn2"), NodePath("EnemySpawners/EnemySpawn3"), NodePath("EnemySpawners/EnemySpawn4")]
 enemy_markers = [NodePath("EnemyMarkers/Marker2D"), NodePath("EnemyMarkers/Marker2D2"), NodePath("EnemyMarkers/Marker2D3"), NodePath("EnemyMarkers/Marker2D4"), NodePath("EnemyMarkers/Marker2D5"), NodePath("EnemyMarkers/Marker2D6"), NodePath("EnemyMarkers/Marker2D7"), NodePath("EnemyMarkers/Marker2D8"), NodePath("EnemyMarkers/Marker2D9"), NodePath("EnemyMarkers/Marker2D10"), NodePath("EnemyMarkers/Marker2D11"), NodePath("EnemyMarkers/Marker2D12"), NodePath("EnemyMarkers/Marker2D13"), NodePath("EnemyMarkers/Marker2D14"), NodePath("EnemyMarkers/Marker2D15"), NodePath("EnemyMarkers/Marker2D16"), NodePath("EnemyMarkers/Marker2D17"), NodePath("EnemyMarkers/Marker2D18"), NodePath("EnemyMarkers/Marker2D19"), NodePath("EnemyMarkers/Marker2D20"), NodePath("EnemyMarkers/Marker2D21"), NodePath("EnemyMarkers/Marker2D22"), NodePath("EnemyMarkers/Marker2D23"), NodePath("EnemyMarkers/Marker2D24")]

@@ -1,26 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://b08lx1offh8ek"]
+[gd_scene load_steps=12 format=3 uid="uid://b08lx1offh8ek"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemy1.gd" id="1_e1786"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy_grey.gd" id="1_e1786"]
 [ext_resource type="Texture2D" uid="uid://c0hmgb1rb7fuw" path="res://assets/enemies/Enemigo 1 A.png" id="2_14ffa"]
 [ext_resource type="Texture2D" uid="uid://dylxqeyjhc8q0" path="res://assets/enemies/Enemigo 1 B.png" id="2_dpale"]
 [ext_resource type="AudioStream" uid="uid://djscnudp61nu2" path="res://sound/sfx/Fx_MonsterLaught_1.wav" id="2_vsb86"]
 [ext_resource type="Texture2D" uid="uid://cln5yoi2m122" path="res://assets/enemies/Enemigo 1 C.png" id="3_5mum8"]
-[ext_resource type="AudioStream" uid="uid://br7ml60w62gpn" path="res://sound/sfx/Fx_BubbleExplotion1.wav" id="3_c4kmp"]
 [ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/commons/hp_system.tscn" id="3_libdg"]
-[ext_resource type="AudioStream" uid="uid://bmpt0vjaca8pf" path="res://sound/sfx/Fx_BubbleExplotion_2.wav" id="4_mp6nu"]
 [ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/commons/hp_bar.tscn" id="4_wxpug"]
-[ext_resource type="AudioStream" uid="uid://brw5xsjtpb2hs" path="res://sound/sfx/Fx_BubbleExplotion4.wav" id="5_70qa2"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pdyf3"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("2_vsb86")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kkigm"]
-streams_count = 3
-stream_0/stream = ExtResource("3_c4kmp")
-stream_1/stream = ExtResource("4_mp6nu")
-stream_2/stream = ExtResource("5_70qa2")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ee73c"]
 animations = [{
@@ -55,18 +46,15 @@ radius = 92.9139
 [sub_resource type="CircleShape2D" id="CircleShape2D_5u5ol"]
 radius = 758.111
 
-[node name="Enemy 1" type="CharacterBody2D"]
+[node name="Enemy_Grey" type="CharacterBody2D"]
 position = Vector2(0, -3)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_e1786")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SFX_Laughter" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_pdyf3")
 bus = &"SFX"
-
-[node name="AudioStreamRandomizer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_kkigm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ee73c")
@@ -82,11 +70,11 @@ collision_mask = 4
 [node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_er8se")
 
-[node name="Player Detector" type="Area2D" parent="."]
+[node name="Player_Detector" type="Area2D" parent="."]
 collision_layer = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Detector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Detector"]
 shape = SubResource("CircleShape2D_5u5ol")
 
 [node name="HP_System" parent="." instance=ExtResource("3_libdg")]
@@ -98,5 +86,5 @@ offset_right = 75.0
 offset_bottom = -125.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Player Detector" to="." method="_on_player_detector_body_entered"]
-[connection signal="body_exited" from="Player Detector" to="." method="_on_player_detector_body_exited"]
+[connection signal="body_entered" from="Player_Detector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="Player_Detector" to="." method="_on_player_detector_body_exited"]
