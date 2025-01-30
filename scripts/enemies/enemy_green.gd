@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-class_name Enemy3
+class_name Enemy_Green
 
-@onready var audio_stream_randomizer = $AudioStreamRandomizer
-@onready var enemy_laughter_sfx = $EnemyLaughterSFX
+@onready var shoot_bubble_sfx = $SFX_ShootBubble
+@onready var enemy_laughter_sfx = $SFX_Laughter
 @onready var hp_system = $HP_System
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
@@ -12,11 +12,11 @@ class_name Enemy3
 @onready var area_2d = $Area2D
 
 @export var speed = 350.0
-@export var chase_speed = 450.0
+@export var chase_speed = 400.0
 @export var patrol_path: Array[Marker2D] = []
 @export var patrol_wait_time = 0
 @export var damage = 1
-@export var hp_max: int = 10
+@export var hp_max: int = 5
 
 var current_patrol_target = 0
 var wait_timer = 0.0
@@ -39,7 +39,6 @@ func apply_damage(damage_recieved: int):
 
 # Disables all functions. Called from signal.
 func on_Died():
-	audio_stream_randomizer.play()
 	area_2d.monitoring = false
 	area_2d.monitorable = false
 	animated_sprite_2d.visible = false
@@ -102,4 +101,11 @@ func _on_player_detector_body_entered(body):
 func _on_player_detector_body_exited(body):
 	if body is Player:
 		chasing = false
-	
+		
+
+func _on_timer_timeout():
+	if chasing:
+		var bubble = Preloads.BUBBLE_GREEN.instantiate()
+		bubble.direction = player.global_position
+		bubble.global_position = global_position
+		shoot_bubble_sfx.play()

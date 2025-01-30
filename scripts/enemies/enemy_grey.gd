@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
-class_name Enemy1
+class_name Enemy_Grey
 
-@onready var audio_stream_player = $AudioStreamPlayer
-@onready var audio_stream_randomizer = $AudioStreamRandomizer
+@onready var audio_stream_player = $SFX_Laughter
 @onready var hp_system = $HP_System
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
@@ -39,7 +38,6 @@ func apply_damage(damage_recieved: int):
 
 # Disables all functions. Called from signal.
 func on_Died():
-	audio_stream_randomizer.play()
 	area_2d.monitoring = false
 	area_2d.monitorable = false
 	animated_sprite_2d.visible = false

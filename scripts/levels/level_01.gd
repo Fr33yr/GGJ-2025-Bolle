@@ -12,10 +12,6 @@ extends Node2D
 @onready var enemy_spawn_timer = $EnemySpawnTimer
 @onready var enemy_spawn_accelerator = $EnemySpawnAccelerator
 
-const enemy1_scene = preload("res://scenes/enemies/enemy1.tscn")
-const enemy2_scene = preload("res://scenes/enemies/enemy2.tscn")
-const enemy3_scene = preload("res://scenes/enemies/enemy3.tscn")
-
 var elapsedTime = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -33,11 +29,11 @@ func _on_timer_timeout():
 	var numero = randi_range(1,10)
 	var enemy
 	if numero<=3:
-		enemy = enemy3_scene.instantiate()
+		enemy = Preloads.ENEMY_BROWN.instantiate()
 	elif numero <=6:
-		enemy = enemy2_scene.instantiate()
+		enemy = Preloads.ENEMY_GREEN.instantiate()
 	else:
-		enemy = enemy1_scene.instantiate()
+		enemy = Preloads.ENEMY_GREY.instantiate()
 		
 	var index = randi_range(0, enemy_spawners.size()-1)	
 	enemy.global_position = enemy_spawners[index].global_position

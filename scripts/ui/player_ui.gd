@@ -22,7 +22,7 @@ func lost_a_life(current_hp):
 	life_ui_container.remove_child(last_child)
 	
 func _on_countdown_timeout():
-	get_tree().change_scene_to_file("res://scenes/victory.tscn")
+	get_tree().change_scene_to_file("res://scripts/menus/victory.gd")
 
 func update_countdown_label(): # Updates time label, time in seconds
 	count_downlabel.text = "TIME " + str(int(countdown_timer.time_left)) 

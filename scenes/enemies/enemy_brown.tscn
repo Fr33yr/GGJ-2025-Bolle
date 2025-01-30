@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://b5t4dhrrqmsk1"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemy3.gd" id="1_hbevn"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy_brown.gd" id="1_hbevn"]
 [ext_resource type="AudioStream" uid="uid://by5nj82jqmmpb" path="res://sound/sfx/Fx_MonsterSpawn3.wav" id="2_p1xk0"]
 [ext_resource type="Texture2D" uid="uid://db2u5qxi4lnhl" path="res://assets/enemies/Enemigo 3 B.png" id="4_jf111"]
 [ext_resource type="Texture2D" uid="uid://e8h2lfbh7wll" path="res://assets/enemies/Enemigo 3 C.png" id="5_k8pkj"]
@@ -55,12 +55,12 @@ stream_0/stream = ExtResource("8_rnoni")
 stream_1/stream = ExtResource("9_8r1mx")
 stream_2/stream = ExtResource("10_754wv")
 
-[node name="Enemy3" type="CharacterBody2D"]
+[node name="Enemy_Brown" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_hbevn")
 
-[node name="EnemyLaughterSFX" type="AudioStreamPlayer" parent="."]
+[node name="SFX_Laughter" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_khsv7")
 volume_db = -12.0
 bus = &"SFX"
@@ -87,16 +87,16 @@ offset_top = -150.0
 offset_right = 75.0
 offset_bottom = -125.0
 
-[node name="Player Detector" type="Area2D" parent="."]
+[node name="Player_Detector" type="Area2D" parent="."]
 collision_layer = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Detector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Detector"]
 shape = SubResource("CircleShape2D_fqxh6")
 
 [node name="AudioStreamRandomizer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_rbdiv")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Player Detector" to="." method="_on_player_detector_body_entered"]
-[connection signal="body_exited" from="Player Detector" to="." method="_on_player_detector_body_exited"]
+[connection signal="body_entered" from="Player_Detector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="Player_Detector" to="." method="_on_player_detector_body_exited"]

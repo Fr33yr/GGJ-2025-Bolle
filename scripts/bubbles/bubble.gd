@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-class_name Bubble_Blue
+class_name Bubble
 
 @onready var player = $"../../Player"
 @onready var collision_shape_2d = $CollisionShape2D
@@ -28,7 +28,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_area_2d_area_entered(area):
 	var areaParent = area.get_parent()
-	if areaParent is Enemy_Grey || areaParent is Enemy_Green || areaParent is Enemy_Brown:
+	if areaParent is Enemy1 || areaParent is Enemy2 || areaParent is Enemy3:
 		sfx_pop.play()
 		area_2d.monitoring = false
 		area_2d.monitorable = false
