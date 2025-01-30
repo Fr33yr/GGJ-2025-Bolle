@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bmpt0vjaca8pf"
-path="res://.godot/imported/Fx_BubbleExplotion_2.wav-1ea403b65e7354d6c1d790679f90047d.sample"
+path="res://.godot/imported/Fx_BubbleExplotion_2.wav-1033c05546857b9b2cfefd33b6a28bb3.sample"
 
 [deps]
 
-source_file="res://sound/SFX/Fx_BubbleExplotion_2.wav"
-dest_files=["res://.godot/imported/Fx_BubbleExplotion_2.wav-1ea403b65e7354d6c1d790679f90047d.sample"]
+source_file="res://sound/sfx/Fx_BubbleExplotion_2.wav"
+dest_files=["res://.godot/imported/Fx_BubbleExplotion_2.wav-1033c05546857b9b2cfefd33b6a28bb3.sample"]
 
 [params]
 

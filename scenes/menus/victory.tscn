@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://o2a2iwjqxbad"]
 
-[ext_resource type="Script" path="res://scripts/victory.gd" id="1_3onud"]
+[ext_resource type="Script" path="res://scripts/menus/victory.gd" id="1_3onud"]
 [ext_resource type="AudioStream" uid="uid://b6ictc03s8siv" path="res://sound/music/Mx_BattleWin_lvl1.wav" id="2_8b1oi"]
 [ext_resource type="Texture2D" uid="uid://ub1ccs7msx8r" path="res://assets/ui/Skip_Victoria.png" id="2_47aih"]
 [ext_resource type="Texture2D" uid="uid://c7cttbagpogms" path="res://assets/ui/Skip_BotonJugar.png" id="3_24ofp"]

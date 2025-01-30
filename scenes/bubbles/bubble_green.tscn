@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://86gxrtm2kd3x"]
 
-[ext_resource type="Script" path="res://scripts/bubble_green.gd" id="1_ol5qy"]
+[ext_resource type="Script" path="res://scripts/bubbles/bubble_green.gd" id="1_ol5qy"]
 [ext_resource type="Texture2D" uid="uid://cc6fhcj5cjehp" path="res://assets/bubbles/Skip_BurbujaVerde.png" id="2_vlvie"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5l6xw"]

@@ -10,7 +10,7 @@ func _process(delta):
 	pass
 
 func _on_play_again_pressed():
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/main.tscn")
 
 func _on_to_menu_pressed():
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menus/menu.tscn")

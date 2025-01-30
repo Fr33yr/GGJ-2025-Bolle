@@ -15,7 +15,7 @@ signal bubble_shot
 @export var friction : float = 1000
 var character_direction : Vector2
 var aim_direction : Vector2
-var bubble_scene = preload("res://scenes/bubble_blue.tscn")
+var bubble_scene = preload("res://scenes/bubbles/bubble_blue.tscn")
 
 var joystick_connected = false
 
@@ -39,7 +39,7 @@ func on_Died():
 	#TODO: Should play dying animation first, right?. ALSO SFX
 	animated_sprite.visible = false
 	await get_tree().create_timer(0.1).timeout 
-	get_tree().change_scene_to_file("res://scenes/defeat.tscn")
+	get_tree().change_scene_to_file("res://scenes/menus/defeat.tscn")
 	
 # Checks for contact with other objects. Verifies through class name.
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -47,7 +47,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if areaParent is Enemy1 || areaParent is Enemy2 || areaParent is Enemy3 || areaParent is Bubble_Green:
 		var damage = (areaParent).damage
 		hp_system.apply_damage(damage)
-		print("Player recieves ", damage," points of damage!")
 
 func _take_damage(damage: int) -> void:
 	#TODO: Update HP Bar.
