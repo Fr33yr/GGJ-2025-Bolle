@@ -2,38 +2,39 @@ extends StaticBody2D
 
 class_name Bubble
 
-@onready var player = $"../../Player"
-@onready var collision_shape_2d = $CollisionShape2D
-@onready var sfx_pop = $SFX_Pop
-@onready var area_2d = $Area2D
-@onready var sprite_2d = $Sprite2D
-@onready var hit_box = $Area2D/HitBox
+@onready var collision_shape_2d: CollisionShape2D
+@onready var sfx_pop: AudioStreamPlayer
+@onready var area_2d: Area2D
+@onready var sprite_2d: Sprite2D
+@onready var hit_box: CollisionShape2D
 
-@export var speed = 1500
+var speed = 1500
 var velocity: Vector2
 var direction: Vector2
+var damage = 1
 
-@export var damage = 1
+func _init():
+	speed = 1500
 
 func _ready():
-	direction = player.aim_direction
+	collision_shape_2d = $CollisionShape2D
+	sfx_pop = $SFX_Pop
+	area_2d = $Area2D
+	sprite_2d = $Sprite2D
+	hit_box = $Area2D/HitBox
 
 func _physics_process(delta):
 	velocity = direction * speed
 	position += velocity * delta
 	
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()	
+	destroy_bubble()
 
-
-func _on_area_2d_area_entered(area):
-	var areaParent = area.get_parent()
-	if areaParent is Enemy1 || areaParent is Enemy2 || areaParent is Enemy3:
-		sfx_pop.play()
-		area_2d.monitoring = false
-		area_2d.monitorable = false
-		sprite_2d.visible = false
-		collision_shape_2d.set_deferred("disabled",true)
-		hit_box.set_deferred("disabled",true)
-		await get_tree().create_timer(0.5).timeout
-		queue_free()
+func destroy_bubble():
+	area_2d.monitoring = false
+	area_2d.monitorable = false
+	sprite_2d.visible = false
+	collision_shape_2d.set_deferred("disabled",true)
+	hit_box.set_deferred("disabled",true)
+	await get_tree().create_timer(0.1).timeout
+	queue_free()

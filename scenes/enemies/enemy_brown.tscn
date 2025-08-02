@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b5t4dhrrqmsk1"]
+[gd_scene load_steps=12 format=3 uid="uid://b5t4dhrrqmsk1"]
 
 [ext_resource type="Script" path="res://scripts/enemies/enemy_brown.gd" id="1_hbevn"]
 [ext_resource type="AudioStream" uid="uid://by5nj82jqmmpb" path="res://sound/sfx/Fx_MonsterSpawn3.wav" id="2_p1xk0"]
@@ -6,10 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://e8h2lfbh7wll" path="res://assets/enemies/Enemigo 3 C.png" id="5_k8pkj"]
 [ext_resource type="Texture2D" uid="uid://bpwik5waomo8u" path="res://assets/enemies/Enemigo 3 A.png" id="6_w2l43"]
 [ext_resource type="PackedScene" uid="uid://lfqx1j7lpv8r" path="res://scenes/commons/hp_system.tscn" id="7_fo5m5"]
-[ext_resource type="AudioStream" uid="uid://br7ml60w62gpn" path="res://sound/sfx/Fx_BubbleExplotion1.wav" id="8_rnoni"]
 [ext_resource type="PackedScene" uid="uid://ra04r8rkne2q" path="res://scenes/commons/hp_bar.tscn" id="8_shed3"]
-[ext_resource type="AudioStream" uid="uid://bmpt0vjaca8pf" path="res://sound/sfx/Fx_BubbleExplotion_2.wav" id="9_8r1mx"]
-[ext_resource type="AudioStream" uid="uid://brw5xsjtpb2hs" path="res://sound/sfx/Fx_BubbleExplotion4.wav" id="10_754wv"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_khsv7"]
 random_pitch = 1.1
@@ -49,12 +46,6 @@ radius = 92.9139
 [sub_resource type="CircleShape2D" id="CircleShape2D_fqxh6"]
 radius = 1189.01
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rbdiv"]
-streams_count = 3
-stream_0/stream = ExtResource("8_rnoni")
-stream_1/stream = ExtResource("9_8r1mx")
-stream_2/stream = ExtResource("10_754wv")
-
 [node name="Enemy_Brown" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 0
@@ -73,8 +64,6 @@ animation = &"chasing"
 shape = SubResource("CircleShape2D_er8se")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 4
 
 [node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_er8se")
@@ -93,9 +82,6 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Detector"]
 shape = SubResource("CircleShape2D_fqxh6")
-
-[node name="AudioStreamRandomizer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_rbdiv")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Player_Detector" to="." method="_on_player_detector_body_entered"]

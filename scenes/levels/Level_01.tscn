@@ -43,21 +43,31 @@ script = ExtResource("2_1tcrd")
 wait_time = 121.0
 autostart = true
 
+[node name="TimerBackground" type="TextureRect" parent="CanvasLayer/PlayerUI"]
+layout_mode = 0
+offset_left = 3163.0
+offset_right = 3577.0
+offset_bottom = 144.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_b1x2f")
+
 [node name="Time" type="Label" parent="CanvasLayer/PlayerUI"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 3490.0
+offset_left = 3159.0
 offset_top = -1.0
 offset_right = 3709.0
-offset_bottom = 174.0
+offset_bottom = 184.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 128
 text = "$Time"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PlayerUI"]
+[node name="LifeCounterBackground" type="TextureRect" parent="CanvasLayer/PlayerUI"]
 layout_mode = 0
 offset_left = 50.0
 offset_right = 464.0
