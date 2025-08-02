@@ -36,5 +36,5 @@ func destroy_bubble():
 	sprite_2d.visible = false
 	collision_shape_2d.set_deferred("disabled",true)
 	hit_box.set_deferred("disabled",true)
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.07).timeout
 	queue_free()

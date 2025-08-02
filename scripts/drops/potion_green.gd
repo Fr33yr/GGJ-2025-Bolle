@@ -34,21 +34,38 @@ func _on_area_2d_area_entered(area):
 		destroy_potion()
 
 func explode():
-	await get_tree().create_timer(0.11).timeout
+	await get_tree().create_timer(0.1).timeout
 	var bubble1 = Preloads.BUBBLE_GREEN.instantiate()
 	var bubble2 = Preloads.BUBBLE_GREEN.instantiate()
 	var bubble3 = Preloads.BUBBLE_GREEN.instantiate()
 	var bubble4 = Preloads.BUBBLE_GREEN.instantiate()
+	var bubble5 = Preloads.BUBBLE_GREEN.instantiate()
+	var bubble6 = Preloads.BUBBLE_GREEN.instantiate()
+	var bubble7 = Preloads.BUBBLE_GREEN.instantiate()
+	var bubble8 = Preloads.BUBBLE_GREEN.instantiate()
 	
-	bubble1.global_position = potion_green.global_position
-	bubble2.global_position = potion_green.global_position
-	bubble3.global_position = potion_green.global_position
-	bubble4.global_position = potion_green.global_position
+	bubble1.global_position = potion_green.global_position + Vector2(25,25)
+	bubble2.global_position = potion_green.global_position + Vector2(25,-25)
+	bubble3.global_position = potion_green.global_position + Vector2(-25,-25)
+	bubble4.global_position = potion_green.global_position + Vector2(-25,25)
+	bubble5.global_position = potion_green.global_position + Vector2(25,0)
+	bubble6.global_position = potion_green.global_position + Vector2(0,25)
+	bubble7.global_position = potion_green.global_position + Vector2(-25,0)
+	bubble8.global_position = potion_green.global_position + Vector2(0,-25)
 	
 	bubble1.direction = Vector2(1,1)
 	bubble2.direction = Vector2(1,-1)
 	bubble3.direction = Vector2(-1,-1)
 	bubble4.direction = Vector2(-1,1)
+	bubble5.direction = Vector2(1,0)
+	bubble6.direction = Vector2(0,1)
+	bubble7.direction = Vector2(-1,0)
+	bubble8.direction = Vector2(0,-1)
+	
+	bubble5.speed = 1000
+	bubble6.speed = 1000
+	bubble7.speed = 1000
+	bubble8.speed = 1000
 	
 	var container: Node = potion_green.get_parent()
 	
@@ -56,6 +73,10 @@ func explode():
 	container.add_child(bubble2,false,Node.INTERNAL_MODE_DISABLED)
 	container.add_child(bubble3,false,Node.INTERNAL_MODE_DISABLED)
 	container.add_child(bubble4,false,Node.INTERNAL_MODE_DISABLED)
+	container.add_child(bubble5,false,Node.INTERNAL_MODE_DISABLED)
+	container.add_child(bubble6,false,Node.INTERNAL_MODE_DISABLED)
+	container.add_child(bubble7,false,Node.INTERNAL_MODE_DISABLED)
+	container.add_child(bubble8,false,Node.INTERNAL_MODE_DISABLED)
 
 func destroy_potion():
 	area_2d.monitoring = false

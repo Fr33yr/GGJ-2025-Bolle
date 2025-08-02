@@ -34,10 +34,12 @@ func on_Died():
 	super()
 
 func manage_drops():
-	var potion = Preloads.POTION_GREEN.instantiate()
-	potion.global_position = enemy_green.global_position
-	var container: Node = enemy_green.get_parent()
-	container.add_child(potion,false,Node.INTERNAL_MODE_DISABLED)
+	var numero = randi_range(1,10)
+	if numero <= 5:
+		var potion = Preloads.POTION_GREEN.instantiate()
+		potion.global_position = enemy_green.global_position
+		var container: Node = enemy_green.get_parent()
+		container.add_child(potion,false,Node.INTERNAL_MODE_DISABLED)
 
 
 func _on_timer_timeout_shoot_bubble():
