@@ -53,7 +53,7 @@ collision_mask = 0
 script = ExtResource("1_xfqgn")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 autostart = true
 
 [node name="SFX_Laughter" type="AudioStreamPlayer" parent="."]
@@ -72,8 +72,6 @@ animation = &"idle"
 shape = SubResource("CircleShape2D_er8se")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 4
 
 [node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_er8se")
@@ -87,13 +85,16 @@ offset_right = 75.0
 offset_bottom = -125.0
 
 [node name="Player_Detector" type="Area2D" parent="."]
+show_behind_parent = true
 collision_layer = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Detector"]
 shape = SubResource("CircleShape2D_fqxh6")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Bubbles_Container" type="Node" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout_shoot_bubble"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Player_Detector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="Player_Detector" to="." method="_on_player_detector_body_exited"]

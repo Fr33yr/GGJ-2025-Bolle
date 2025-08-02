@@ -4,6 +4,7 @@ class_name HP_System
 
 signal died
 signal damage_taken(hp_current: int)
+signal hp_restored(points: int)
 
 var hp_max: int
 var hp_current :int
@@ -15,5 +16,9 @@ func init(total_hp: int):
 func apply_damage(damage: int):
 	hp_current = hp_current - damage
 	damage_taken.emit(damage)
-	if hp_current <= 0:
+	if hp_current == 0:
 		died.emit()
+
+func restore_hp(points: int):
+	hp_current = hp_current + points
+	hp_restored.emit(points)

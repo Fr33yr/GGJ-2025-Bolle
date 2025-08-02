@@ -1,39 +1,16 @@
-extends StaticBody2D
+extends Bubble
 
 class_name Bubble_Blue
 
-@onready var player = $"../../Player"
-@onready var collision_shape_2d = $CollisionShape2D
-@onready var sfx_pop = $SFX_Pop
-@onready var area_2d = $Area2D
-@onready var sprite_2d = $Sprite2D
-@onready var hit_box = $Area2D/HitBox
-
-@export var speed = 1500
-var velocity: Vector2
-var direction: Vector2
-
-@export var damage = 1
+@onready var player: CharacterBody2D
 
 func _ready():
+	super()
+	player = $"../../Player"
 	direction = player.aim_direction
-
-func _physics_process(delta):
-	velocity = direction * speed
-	position += velocity * delta
-	
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()	
-
 
 func _on_area_2d_area_entered(area):
 	var areaParent = area.get_parent()
-	if areaParent is Enemy_Grey || areaParent is Enemy_Green || areaParent is Enemy_Brown:
+	if areaParent is Enemy || areaParent is Bubble_Green || areaParent is Potion_Green:
 		sfx_pop.play()
-		area_2d.monitoring = false
-		area_2d.monitorable = false
-		sprite_2d.visible = false
-		collision_shape_2d.set_deferred("disabled",true)
-		hit_box.set_deferred("disabled",true)
-		await get_tree().create_timer(0.5).timeout
-		queue_free()
+		destroy_bubble()
