@@ -15,5 +15,5 @@ func init(total_hp: int):
 func apply_damage(damage: int):
 	hp_current = hp_current - damage
 	damage_taken.emit(damage)
-	if hp_current <= 0:
+	if hp_current == 0:
 		died.emit()
