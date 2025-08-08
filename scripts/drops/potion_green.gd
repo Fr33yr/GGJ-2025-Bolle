@@ -28,7 +28,7 @@ func _process(delta):
 
 func _on_area_2d_area_entered(area):
 	var areaParent = area.get_parent()
-	if areaParent is Player || areaParent is Bubble_Blue|| areaParent is Bubble_Red:
+	if areaParent is Player || areaParent is Bubble_Blue|| areaParent is Bubble_Red || areaParent is Bubble_Purple:
 		sfx_pops.play()
 		explode()
 		destroy_potion()

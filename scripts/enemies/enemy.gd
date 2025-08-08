@@ -62,10 +62,13 @@ func on_Died():
 func manage_drops():
 	var numero = randi_range(1,10)
 	var drop: StaticBody2D
-	if numero <= 3:
+	
+	if numero <= 1:
 		drop = preload("res://scenes/drops/heart.tscn").instantiate()
-	elif numero >= 4 && numero<= 6:
+	elif numero >= 2 && numero<= 5:
 		drop = preload("res://scenes/drops/potion_red.tscn").instantiate()
+	elif numero >= 6 && numero<= 7:
+		drop = preload("res://scenes/drops/potion_purple.tscn").instantiate()
 		
 	if drop != null:
 		drop.global_position = enemy.global_position
@@ -73,11 +76,9 @@ func manage_drops():
 		container.add_child(drop,false,Node.INTERNAL_MODE_DISABLED)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.get_parent() is Bubble_Blue:
-		var damage_recieved = (area.get_parent() as Bubble_Blue).damage
-		hp_system.apply_damage(damage_recieved)
-	elif area.get_parent() is Bubble_Red:
-		var damage_recieved = (area.get_parent() as Bubble_Red).damage
+	var areaParent = area.get_parent()
+	if areaParent is Bubble_Blue || areaParent is Bubble_Red || areaParent is Bubble_Purple:
+		var damage_recieved = (areaParent as Bubble).damage
 		hp_system.apply_damage(damage_recieved)
 
 func take_damage(damage_recieved: int) -> void:

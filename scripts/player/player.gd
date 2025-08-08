@@ -4,6 +4,7 @@ class_name Player
 
 signal bubble_shot
 
+@onready var player = $"."
 @onready var animated_sprite= $AnimatedSprite2D
 @onready var muzzle = $Muzzle
 @onready var audio_player = $AudioStreamPlayer2D
@@ -11,7 +12,11 @@ signal bubble_shot
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var shooting_timer = $ShootingTimer
 @onready var rapid_fire_timer = $RapidFireTimer
+@onready var purple_shield_timer = $PurpleShieldTimer
 
+var shield: Node2D
+var purple_shield_mode: bool = false
+var purple_shield_duration: float = 10.0
 var rapid_fire_mode: bool = false
 var rapid_fire_duration: float = 10.0
 var fire_delay_normal: float = 0.3
@@ -54,6 +59,18 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	elif areaParent is Potion_Red:
 		rapid_fire_timer.start(rapid_fire_duration)
 		rapid_fire_mode = true
+	elif areaParent is Potion_Purple:
+		if purple_shield_mode == true:
+			for bubble in shield.get_children():
+				bubble.queue_free()
+			shield.queue_free()
+			shield = null
+		shield = preload("res://scenes/player/purple_shield_container.tscn").instantiate()
+		player.add_child(shield)
+		shield.global_position = player.global_position
+		purple_shield_mode = true
+		purple_shield_timer.start(purple_shield_duration)
+			
 
 func _take_damage(damage: int) -> void:
 	#TODO: Update HP Bar.
@@ -79,6 +96,13 @@ func _process(delta) -> void:
 			
 	if rapid_fire_timer.is_stopped():
 		rapid_fire_mode = false
+	if purple_shield_timer.is_stopped():
+		if purple_shield_mode == true:
+			for bubble in shield.get_children():
+				bubble.queue_free()
+			shield.queue_free()
+			shield = null
+		purple_shield_mode = false
 
 func _physics_process(delta):
 	character_direction.x = Input.get_axis("move_left", "move_right")

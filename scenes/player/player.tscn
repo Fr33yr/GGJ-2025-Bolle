@@ -11,7 +11,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1exfe"]
 radius = 30.0
-height = 286.0
+height = 288.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uy27i"]
 random_pitch = 1.1
@@ -94,6 +94,10 @@ animation = &"idle"
 wait_time = 0.3
 one_shot = true
 autostart = true
+
+[node name="PurpleShieldTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
 
 [node name="RapidFireTimer" type="Timer" parent="."]
 wait_time = 10.0

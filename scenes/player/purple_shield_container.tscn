@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://r36f3kg7teh2"]
+
+[ext_resource type="Script" path="res://scripts/player/purple_shield_container.gd" id="1_2px0t"]
+[ext_resource type="PackedScene" uid="uid://dislgqctpssio" path="res://scenes/bubbles/bubble_purple.tscn" id="2_7de2k"]
+
+[node name="PurpleShieldContainer" type="Node2D"]
+script = ExtResource("1_2px0t")
+
+[node name="Bubble_Purple" parent="." instance=ExtResource("2_7de2k")]
+position = Vector2(0, -300)
+
+[node name="Bubble_Purple2" parent="." instance=ExtResource("2_7de2k")]
+position = Vector2(300, 0)
+
+[node name="Bubble_Purple3" parent="." instance=ExtResource("2_7de2k")]
+position = Vector2(0, 300)
+
+[node name="Bubble_Purple4" parent="." instance=ExtResource("2_7de2k")]
+position = Vector2(-300, 0)
+
+[node name="Bubble_Purple5" parent="." instance=ExtResource("2_7de2k")]
+position = Vector2(225, 225)
+
+[node name="Bubble_Purple6" parent="." instance=ExtResource("2_7de2k")]
+position = Vector2(225, -225)
+
+[node name="Bubble_Purple7" parent="." instance=ExtResource("2_7de2k")]
+position = Vector2(-225, 225)
+
+[node name="Bubble_Purple8" parent="." instance=ExtResource("2_7de2k")]
+position = Vector2(-225, -225)

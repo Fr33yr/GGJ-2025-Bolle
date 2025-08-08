@@ -33,11 +33,13 @@ func manage_drops():
 	var numero = randi_range(1,10)
 	var drop: StaticBody2D
 	
-	if numero <= 2:
+	if numero == 1:
 		drop = preload("res://scenes/drops/heart.tscn").instantiate()
-	elif numero >= 3 && numero<= 5:
+	elif numero == 2:
 		drop = preload("res://scenes/drops/potion_red.tscn").instantiate()
-	elif numero >= 6 && numero <= 8:
+	elif numero == 3:
+		drop = preload("res://scenes/drops/potion_purple.tscn").instantiate()
+	elif numero >= 6 && numero <= 10:
 		drop = preload("res://scenes/drops/potion_green.tscn").instantiate()
 	
 	if drop != null:

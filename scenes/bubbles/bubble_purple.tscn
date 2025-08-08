@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dislgqctpssio"]
+
+[ext_resource type="Script" path="res://scripts/bubbles/bubble_purple.gd" id="1_2j4y1"]
+[ext_resource type="Texture2D" uid="uid://bllo4qu3bgq11" path="res://assets/bubbles/Skip_BurbujaVioleta.png" id="2_1sd6m"]
+[ext_resource type="AudioStream" uid="uid://bajkt3jpo44hq" path="res://sound/sfx/Fx_BubbleExplotion_3.wav" id="3_s3ami"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kny1j"]
+radius = 46.5242
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fo4sk"]
+radius = 46.5242
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_whq3t"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("3_s3ami")
+
+[node name="Bubble_Purple" type="StaticBody2D"]
+script = ExtResource("1_2j4y1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1sd6m")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kny1j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fo4sk")
+
+[node name="SFX_Pop" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_whq3t")
+volume_db = -10.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

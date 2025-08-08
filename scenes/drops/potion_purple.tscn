@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbheqyhn0qohv"]
+
+[ext_resource type="Script" path="res://scripts/drops/potion_purple.gd" id="1_ea5e5"]
+[ext_resource type="Texture2D" uid="uid://cf3kds2qh0ycv" path="res://assets/objects/Skip_PocionVioleta.png" id="2_b61jd"]
+[ext_resource type="AudioStream" uid="uid://brw5xsjtpb2hs" path="res://sound/sfx/Fx_BubbleExplotion4.wav" id="3_b6y2h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qmn3r"]
+radius = 12.0
+height = 88.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kud4o"]
+radius = 17.0
+height = 108.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4uqyx"]
+random_pitch = 1.5
+random_volume_offset_db = 6.0
+streams_count = 1
+stream_0/stream = ExtResource("3_b6y2h")
+
+[node name="potion_purple" type="StaticBody2D"]
+script = ExtResource("1_ea5e5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_b61jd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qmn3r")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_kud4o")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="SFX_Pops" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_4uqyx")
+volume_db = -10.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
