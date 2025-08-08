@@ -60,7 +60,14 @@ func _take_damage(damage: int) -> void:
 	pass
 
 func _process(delta) -> void:
-	if Input.is_action_pressed("fire") && shooting_timer.is_stopped():
+	var firing
+	if joystick_connected:
+		if Input.is_action_pressed("aim_down") || Input.is_action_pressed("aim_up")  || Input.is_action_pressed("aim_left")   || Input.is_action_pressed("aim_right"):
+			firing = true
+		elif Input.is_action_pressed("fire"):
+			firing = true
+	
+	if firing && shooting_timer.is_stopped():
 		if rapid_fire_mode == true:
 			shooting_timer.start(fire_delay_fast)
 			shoot()
@@ -97,9 +104,9 @@ func _physics_process(delta):
 func update_muzzle_direction():
 	if joystick_connected: #Use Joypad Input
 		var aim_input = Vector2(Input.get_axis("aim_left", "aim_right"),
-	 	Input.get_axis("aim_up", "aim_down"))
+	 							Input.get_axis("aim_up", "aim_down"))
 		aim_direction = aim_input.normalized()
-		if aim_input.length() > 0.1: #Dead zone check
+		if aim_input.length() > 0.1 || aim_input.length() < -0.1: #Dead zone check
 			$Muzzle.rotation = aim_input.angle()
 			aim_direction = aim_input.normalized()
 	else:
