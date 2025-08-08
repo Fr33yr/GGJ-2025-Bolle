@@ -14,7 +14,7 @@ stream_0/stream = ExtResource("3_freow")
 
 [node name="Bubble_Green" type="StaticBody2D"]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("1_ol5qy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

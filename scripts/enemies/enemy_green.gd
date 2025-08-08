@@ -3,8 +3,6 @@ extends Enemy
 class_name Enemy_Green
 
 @onready var sfx_shoot_bubble: AudioStreamPlayer
-@onready var enemy_green: CharacterBody2D
-@onready var bubbles_container: Node
 @onready var timer: Timer
 
 var bubble_speed: float
@@ -24,32 +22,38 @@ func _init() -> void:
 func _ready() -> void:
 	super()
 	sfx_shoot_bubble = $SFX_ShootBubble
-	enemy_green = $"."
-	bubbles_container = $Bubbles_Container
 	timer = $Timer
 
 func on_Died():
 	timer.stop()
-	manage_drops()
 	super()
 
 func manage_drops():
 	var numero = randi_range(1,10)
-	if numero <= 5:
-		var potion = Preloads.POTION_GREEN.instantiate()
-		potion.global_position = enemy_green.global_position
-		var container: Node = enemy_green.get_parent()
-		container.add_child(potion,false,Node.INTERNAL_MODE_DISABLED)
-
+	var drop: StaticBody2D
+	
+	if numero <= 2:
+		drop = preload("res://scenes/drops/heart.tscn").instantiate()
+	elif numero >= 3 && numero<= 4:
+		drop = preload("res://scenes/drops/potion_red.tscn").instantiate()
+	elif numero >= 5 && numero <= 8:
+		drop = preload("res://scenes/drops/potion_green.tscn").instantiate()
+	
+	if drop != null:
+		drop.global_position = enemy.global_position
+		var container: Node = enemy.get_parent()
+		container.add_child(drop,false,Node.INTERNAL_MODE_DISABLED)
 
 func _on_timer_timeout_shoot_bubble():
 	if  player != null:
 		var player_position = player.global_position
 		var direction = (player_position - position).normalized()
-		var bubble = Preloads.BUBBLE_GREEN.instantiate()
+		var bubble = preload("res://scenes/bubbles/bubble_green.tscn").instantiate()
 		
-		bubble.global_position = enemy_green.global_position
+		bubble.global_position = enemy.global_position
 		bubble.direction = direction
 		
-		bubbles_container.add_child(bubble)
+		var container: Node = enemy.get_parent()
+		
+		container.add_child(bubble)
 		sfx_shoot_bubble.play()

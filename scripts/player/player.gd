@@ -9,13 +9,20 @@ signal bubble_shot
 @onready var audio_player = $AudioStreamPlayer2D
 @onready var hp_system = $HP_System
 @onready var collision_shape_2d = $CollisionShape2D
+@onready var shooting_timer = $ShootingTimer
+@onready var rapid_fire_timer = $RapidFireTimer
 
-@export var hp_max: int = 3
-@export var move_speed : float = 750
-@export var friction : float = 1000
+var rapid_fire_mode: bool = false
+var rapid_fire_duration: float = 10.0
+var fire_delay_normal: float = 0.3
+var fire_delay_fast: float = 0.15
+var hp_max: int = 3
+var move_speed : float = 750
+var friction : float = 1000
 var character_direction : Vector2
 var aim_direction : Vector2
-var bubble_scene = Preloads.BUBBLE_BLUE
+var bubble_blue = preload("res://scenes/bubbles/bubble_blue.tscn")
+var bubble_red = preload("res://scenes/bubbles/bubble_red.tscn")
 
 var joystick_connected = false
 
@@ -25,11 +32,6 @@ func _ready() -> void:
 	hp_system.init(hp_max)
 	#TODO: HP Bar.
 	hp_system.died.connect(on_Died)
-	
-
-# Calls to HPSystem to apply damage.
-func apply_damage(damage: int):
-	hp_system.apply_damage(damage)
 
 # Disables all functions. Called from signal.
 func on_Died():
@@ -47,15 +49,28 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if areaParent is Enemy || areaParent is Bubble_Green:
 		var damage = (areaParent).damage
 		hp_system.apply_damage(damage)
+	elif areaParent is Heart:
+		hp_system.restore_hp(1)
+	elif areaParent is Potion_Red:
+		rapid_fire_timer.start(rapid_fire_duration)
+		rapid_fire_mode = true
 
 func _take_damage(damage: int) -> void:
 	#TODO: Update HP Bar.
 	pass
 
 func _process(delta) -> void:
-	if Input.is_action_just_pressed("fire"):
-		shoot()
-	
+	if Input.is_action_pressed("fire") && shooting_timer.is_stopped():
+		if rapid_fire_mode == true:
+			shooting_timer.start(fire_delay_fast)
+			shoot()
+		else:
+			shooting_timer.start(fire_delay_normal)
+			shoot()
+			
+	if rapid_fire_timer.is_stopped():
+		rapid_fire_mode = false
+
 func _physics_process(delta):
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")
@@ -96,7 +111,10 @@ func update_muzzle_direction():
 		
 func shoot():
 	if aim_direction == Vector2.ZERO: return
-	bubble_shot.emit(bubble_scene, muzzle.global_position)
+	if rapid_fire_mode == true:
+		bubble_shot.emit(bubble_red, muzzle.global_position)
+	else:
+		bubble_shot.emit(bubble_blue, muzzle.global_position)
 	audio_player.play()
 	
 func check_connected_joypad():

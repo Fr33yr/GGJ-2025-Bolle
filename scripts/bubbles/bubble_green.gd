@@ -8,6 +8,6 @@ func _init():
 
 func _on_area_2d_area_entered(area):
 	var areaParent = area.get_parent()
-	if areaParent is Player || areaParent is Bubble_Blue:
+	if areaParent is Player:
 		sfx_pop.play()
 		destroy_bubble()

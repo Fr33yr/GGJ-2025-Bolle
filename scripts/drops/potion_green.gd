@@ -28,21 +28,21 @@ func _process(delta):
 
 func _on_area_2d_area_entered(area):
 	var areaParent = area.get_parent()
-	if areaParent is Player || areaParent is Bubble_Blue:
+	if areaParent is Player || areaParent is Bubble_Blue|| areaParent is Bubble_Red:
 		sfx_pops.play()
 		explode()
 		destroy_potion()
 
 func explode():
 	await get_tree().create_timer(0.1).timeout
-	var bubble1 = Preloads.BUBBLE_GREEN.instantiate()
-	var bubble2 = Preloads.BUBBLE_GREEN.instantiate()
-	var bubble3 = Preloads.BUBBLE_GREEN.instantiate()
-	var bubble4 = Preloads.BUBBLE_GREEN.instantiate()
-	var bubble5 = Preloads.BUBBLE_GREEN.instantiate()
-	var bubble6 = Preloads.BUBBLE_GREEN.instantiate()
-	var bubble7 = Preloads.BUBBLE_GREEN.instantiate()
-	var bubble8 = Preloads.BUBBLE_GREEN.instantiate()
+	var bubble1 = preload("res://scenes/bubbles/bubble_green.tscn").instantiate()
+	var bubble2 = preload("res://scenes/bubbles/bubble_green.tscn").instantiate()
+	var bubble3 = preload("res://scenes/bubbles/bubble_green.tscn").instantiate()
+	var bubble4 = preload("res://scenes/bubbles/bubble_green.tscn").instantiate()
+	var bubble5 = preload("res://scenes/bubbles/bubble_green.tscn").instantiate()
+	var bubble6 = preload("res://scenes/bubbles/bubble_green.tscn").instantiate()
+	var bubble7 = preload("res://scenes/bubbles/bubble_green.tscn").instantiate()
+	var bubble8 = preload("res://scenes/bubbles/bubble_green.tscn").instantiate()
 	
 	bubble1.global_position = potion_green.global_position + Vector2(25,25)
 	bubble2.global_position = potion_green.global_position + Vector2(25,-25)
