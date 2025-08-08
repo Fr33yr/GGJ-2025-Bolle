@@ -60,12 +60,14 @@ func _take_damage(damage: int) -> void:
 	pass
 
 func _process(delta) -> void:
-	var firing
+	check_connected_joypad()
+	
+	var firing: bool
 	if joystick_connected:
 		if Input.is_action_pressed("aim_down") || Input.is_action_pressed("aim_up")  || Input.is_action_pressed("aim_left")   || Input.is_action_pressed("aim_right"):
 			firing = true
-		elif Input.is_action_pressed("fire"):
-			firing = true
+	elif Input.is_action_pressed("fire"):
+		firing = true
 	
 	if firing && shooting_timer.is_stopped():
 		if rapid_fire_mode == true:
@@ -127,3 +129,5 @@ func shoot():
 func check_connected_joypad():
 	if Input.get_connected_joypads().size() > 0:
 		joystick_connected = true
+	else:
+		joystick_connected = false
