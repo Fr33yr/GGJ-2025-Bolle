@@ -3,7 +3,7 @@ extends Enemy
 class_name Enemy_Green
 
 @onready var sfx_shoot_bubble: AudioStreamPlayer
-@onready var timer: Timer
+@onready var shooting_timer: Timer
 
 var bubble_speed: float
 
@@ -22,10 +22,11 @@ func _init() -> void:
 func _ready() -> void:
 	super()
 	sfx_shoot_bubble = $SFX_ShootBubble
-	timer = $Timer
+	shooting_timer = $Shooting_Timer
+
 
 func on_Died():
-	timer.stop()
+	shooting_timer.stop()
 	super()
 
 func manage_drops():
@@ -34,9 +35,9 @@ func manage_drops():
 	
 	if numero <= 2:
 		drop = preload("res://scenes/drops/heart.tscn").instantiate()
-	elif numero >= 3 && numero<= 4:
+	elif numero >= 3 && numero<= 5:
 		drop = preload("res://scenes/drops/potion_red.tscn").instantiate()
-	elif numero >= 5 && numero <= 8:
+	elif numero >= 6 && numero <= 8:
 		drop = preload("res://scenes/drops/potion_green.tscn").instantiate()
 	
 	if drop != null:

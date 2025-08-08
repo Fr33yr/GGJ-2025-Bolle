@@ -19,6 +19,7 @@ func apply_damage(damage: int):
 	if hp_current == 0:
 		died.emit()
 
-func restore_hp(points: int):
-	hp_current = hp_current + points
-	hp_restored.emit(points)
+func restore_hp(restored_points: int):
+	if hp_current < hp_max:
+		hp_current = hp_current + restored_points
+		hp_restored.emit(restored_points)

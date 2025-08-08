@@ -62,9 +62,9 @@ func on_Died():
 func manage_drops():
 	var numero = randi_range(1,10)
 	var drop: StaticBody2D
-	if numero <= 2:
+	if numero <= 3:
 		drop = preload("res://scenes/drops/heart.tscn").instantiate()
-	elif numero >= 3 && numero<= 4:
+	elif numero >= 4 && numero<= 6:
 		drop = preload("res://scenes/drops/potion_red.tscn").instantiate()
 		
 	if drop != null:
