@@ -52,8 +52,7 @@ collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_xfqgn")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+[node name="Shooting_Timer" type="Timer" parent="."]
 autostart = true
 
 [node name="SFX_Laughter" type="AudioStreamPlayer" parent="."]
@@ -92,9 +91,7 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Detector"]
 shape = SubResource("CircleShape2D_fqxh6")
 
-[node name="Bubbles_Container" type="Node" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout_shoot_bubble"]
+[connection signal="timeout" from="Shooting_Timer" to="." method="_on_timer_timeout_shoot_bubble"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Player_Detector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="Player_Detector" to="." method="_on_player_detector_body_exited"]

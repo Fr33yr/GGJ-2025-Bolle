@@ -1,13 +1,16 @@
 extends Bubble
 
-class_name Bubble_Green
+class_name Bubble_Purple
 
-func _init():
+@onready var player: CharacterBody2D
+
+func _ready():
 	super()
-	speed = 750
+	damage = 3
+
 
 func _on_area_2d_area_entered(area):
 	var areaParent = area.get_parent()
-	if areaParent is Player || areaParent is Bubble_Purple:
+	if areaParent is Enemy:
 		sfx_pop.play()
 		destroy_bubble()

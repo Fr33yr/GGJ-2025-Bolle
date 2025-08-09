@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name Enemy
 
+var enemy: CharacterBody2D
 var sfx_laughter: AudioStreamPlayer
 var hp_system: HP_System
 var animated_sprite_2d: AnimatedSprite2D
@@ -25,6 +26,7 @@ var player: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	enemy = $"."
 	sfx_laughter = $SFX_Laughter
 	hp_system = $HP_System
 	animated_sprite_2d = $AnimatedSprite2D
@@ -47,6 +49,7 @@ func apply_damage(damage_recieved: int):
 
 # Disables all functions. Called from signal.
 func on_Died():
+	manage_drops()
 	area_2d.monitoring = false
 	area_2d.monitorable = false
 	animated_sprite_2d.visible = false
@@ -57,11 +60,25 @@ func on_Died():
 	queue_free()
 
 func manage_drops():
-	pass
+	var numero = randi_range(1,10)
+	var drop: StaticBody2D
+	
+	if numero <= 1:
+		drop = preload("res://scenes/drops/heart.tscn").instantiate()
+	elif numero >= 2 && numero<= 5:
+		drop = preload("res://scenes/drops/potion_red.tscn").instantiate()
+	elif numero >= 6 && numero<= 7:
+		drop = preload("res://scenes/drops/potion_purple.tscn").instantiate()
+		
+	if drop != null:
+		drop.global_position = enemy.global_position
+		var container: Node = enemy.get_parent()
+		container.add_child(drop,false,Node.INTERNAL_MODE_DISABLED)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.get_parent() is Bubble_Blue:
-		var damage_recieved = (area.get_parent() as Bubble_Blue).damage
+	var areaParent = area.get_parent()
+	if areaParent is Bubble_Blue || areaParent is Bubble_Red || areaParent is Bubble_Purple:
+		var damage_recieved = (areaParent as Bubble).damage
 		hp_system.apply_damage(damage_recieved)
 
 func take_damage(damage_recieved: int) -> void:

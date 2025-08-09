@@ -29,11 +29,11 @@ func _on_timer_timeout():
 	var numero = randi_range(1,10)
 	var enemy
 	if numero<=3:
-		enemy = Preloads.ENEMY_BROWN.instantiate()
+		enemy = preload("res://scenes/enemies/enemy_brown.tscn").instantiate()
 	elif numero <=6:
-		enemy = Preloads.ENEMY_GREEN.instantiate()
+		enemy = preload("res://scenes/enemies/enemy_green.tscn").instantiate()
 	else:
-		enemy = Preloads.ENEMY_GREY.instantiate()
+		enemy = preload("res://scenes/enemies/enemy_grey.tscn").instantiate()
 		
 	var index = randi_range(0, enemy_spawners.size()-1)	
 	enemy.global_position = enemy_spawners[index].global_position

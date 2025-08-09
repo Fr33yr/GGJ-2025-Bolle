@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxeijjuq25l1a"]
+[gd_scene load_steps=11 format=3 uid="uid://bxeijjuq25l1a"]
 
 [ext_resource type="Script" path="res://scripts/menus/menu.gd" id="1_35stw"]
 [ext_resource type="Texture2D" uid="uid://b4hveq3gw05xq" path="res://assets/ui/Skip_FondoMenu.png" id="2_rqmsj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ctske1r7wn5mq" path="res://assets/ui/Skip_BotonCreditos_apretado.png" id="6_t6inw"]
 [ext_resource type="Texture2D" uid="uid://diprni7tw8tl7" path="res://assets/ui/Skip_BotonSalir.png" id="7_4n31b"]
 [ext_resource type="Texture2D" uid="uid://dns8g84rmn56q" path="res://assets/ui/Skip_BotonSalir_apretado.png" id="8_ul8e5"]
+[ext_resource type="Texture2D" uid="uid://datjocqqbttqm" path="res://assets/ui/Skip_Nombre.png" id="9_7i2sp"]
 [ext_resource type="AudioStream" uid="uid://dlcm7bvip50lg" path="res://sound/music/Mx_Menú.wav" id="9_g6rqv"]
 
 [node name="Menu" type="Control"]
@@ -47,9 +48,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -345.5
-offset_top = -360.5
+offset_top = 88.0
 offset_right = 345.5
-offset_bottom = 360.5
+offset_bottom = 809.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 128
@@ -68,6 +69,14 @@ texture_pressed = ExtResource("6_t6inw")
 layout_mode = 2
 texture_normal = ExtResource("7_4n31b")
 texture_pressed = ExtResource("8_ul8e5")
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -422.0
+offset_top = -360.0
+offset_right = 452.0
+offset_bottom = -5.0
+texture = ExtResource("9_7i2sp")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_g6rqv")

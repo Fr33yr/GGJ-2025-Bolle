@@ -1,6 +1,6 @@
 extends Bubble
 
-class_name Bubble_Blue
+class_name Bubble_Red
 
 @onready var player: CharacterBody2D
 

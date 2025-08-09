@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dh2xfj0ucai0h"]
+
+[ext_resource type="Script" path="res://scripts/drops/heart.gd" id="1_fg1eg"]
+[ext_resource type="Texture2D" uid="uid://c6mo5y6wqrmx8" path="res://assets/ui/Skip_Vida.png" id="2_buot5"]
+[ext_resource type="AudioStream" uid="uid://brw5xsjtpb2hs" path="res://sound/sfx/Fx_BubbleExplotion4.wav" id="3_at733"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u2tyw"]
+radius = 41.0488
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oecwn"]
+radius = 41.1947
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vpmrh"]
+random_pitch = 1.5
+random_volume_offset_db = 6.0
+streams_count = 1
+stream_0/stream = ExtResource("3_at733")
+
+[node name="Heart" type="StaticBody2D"]
+script = ExtResource("1_fg1eg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_buot5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u2tyw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_oecwn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="SFX_Pops" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_vpmrh")
+volume_db = -10.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

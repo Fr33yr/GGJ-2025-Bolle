@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bou4pek0rk37n"]
+
+[ext_resource type="Texture2D" uid="uid://bcgnke7kppy3y" path="res://assets/bubbles/Skip_BurbujaRoja.png" id="1_flg0u"]
+[ext_resource type="Script" path="res://scripts/bubbles/bubble_red.gd" id="1_hm1ws"]
+[ext_resource type="AudioStream" uid="uid://bajkt3jpo44hq" path="res://sound/sfx/Fx_BubbleExplotion_3.wav" id="2_1yqh4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sknkn"]
+radius = 46.5242
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_an0q6"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("2_1yqh4")
+
+[node name="Bubble_Red" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_hm1ws")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_flg0u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sknkn")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_sknkn")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="SFX_Pop" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_an0q6")
+volume_db = -10.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
