@@ -1,4 +1,6 @@
-# GGJ-2025-Bolle
+# Skip!
+
+🧙🪄 [Play *Skip* on Itch.io](https://maxi-rv.itch.io/skip)
 
 Created for the Global Game Jam 2025, on a remote site managed by the "Desarrolladores de Videojuegos de Bahia Blanca" Comunnity!
 
